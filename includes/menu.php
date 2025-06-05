@@ -6,7 +6,7 @@
 
 // Array with menu items
 $menu_items = [
-    ['label' => 'Über uns', 'url' => 'pages/about/dasProjekt.php', 'color' => '#6200EA', 'content' => 'about'],
+    ['label' => 'Über QuizVentura', 'url' => 'pages/about/dasProjekt.php', 'color' => '#FF5252', 'content' => 'about'],
     ['label' => 'Dashboard', 'url' => 'pages/dashboard/meinDashboard.php', 'color' => '#F26419', 'content' => 'dashboard'],
     ['label' => 'Lernen', 'url' => 'pages/lernen/alleKategorien.php', 'color' => '#00BCD4', 'content' => 'lernen'],
     ['label' => 'Spielen', 'url' => 'pages/spielen/leaderboard.php', 'color' => '#6200EA', 'content' => 'spielen'],

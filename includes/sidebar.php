@@ -21,6 +21,10 @@ $user_role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'Dashboard
             <h4>Das Team</h4>
             <p style="font-size: 14px; margin-top: 10px;">Das Team kennenlernen</p>
         </div>
+        <div class="profile-card" data-page="pages/about/tutorial.php">
+            <h4>Tutorial</h4>
+            <p style="font-size: 14px; margin-top: 10px;">Wie lernt man mit QuizVentura?</p>
+        </div>
     </div>
 
     <!-- Dashboard content -->
