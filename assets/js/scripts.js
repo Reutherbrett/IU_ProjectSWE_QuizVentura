@@ -10,17 +10,17 @@ function changeThemeColor(color) {
         '#FF5252': '#E53935',
         '#F26419': '#D14F0F'
     };
-    
+
     if (hoverColors[color]) {
         document.documentElement.style.setProperty('--primary-hover', hoverColors[color]);
     }
-    
+
     // Conver hex color to rgba with 90% opacity
     const hex = color.replace('#', '');
     const r = parseInt(hex.substr(0, 2), 16);
     const g = parseInt(hex.substr(2, 2), 16);
     const b = parseInt(hex.substr(4, 2), 16);
-    
+
     document.documentElement.style.setProperty('--secondary-menu-bg', `rgba(${r}, ${g}, ${b}, 0.9)`);
 }
 
@@ -30,31 +30,18 @@ function changeThemeColor(color) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     const backdrop = document.querySelector('.menu-backdrop');
-    
+
     if (sidebar) {
         sidebar.classList.toggle('active');
     }
-    
+
     if (backdrop) {
         backdrop.classList.toggle('active');
     }
 }
 
-// Handle menu clicks
-document.addEventListener('DOMContentLoaded', function() {
-    initializeProfileCards();
-    initializeNavItems();
-    
-    // Handle browser back/forward buttons
-    window.addEventListener('popstate', function(e) {
-        if (e.state && e.state.page) {
-            loadPage(e.state.page, false);
-        }
-    });
-});
-
+// Add event listeners for main menu items
 function initializeNavItems() {
-    // Add event listeners for main menu items
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
@@ -62,10 +49,14 @@ function initializeNavItems() {
 
             const color = item.getAttribute('data-color');
             const content = item.getAttribute('data-content');
-            
+
             if (color && content) {
                 handleMenuClick(color, content);
-                
+
+                // Update the URL for deep linking
+                const newUrl = `index2.php?page=${content}`;
+                history.pushState({ page: `pages/${content}.php` }, '', newUrl);
+
                 // Close mobile menu if open
                 const sidebar = document.getElementById('sidebar');
                 const backdrop = document.querySelector('.menu-backdrop');
@@ -85,111 +76,54 @@ function handleMenuClick(color, content) {
     document.querySelectorAll('.sidebar-content').forEach(el => {
         el.style.display = 'none';
     });
-    
+
     // Show selected content
     const selectedContent = document.getElementById('content-' + content);
     if (selectedContent) {
         selectedContent.style.display = 'block';
     }
-    
+
     // Update secondary sidebar color
     const secondarySidebar = document.getElementById('secondary-sidebar');
     if (secondarySidebar) {
         secondarySidebar.style.backgroundColor = color;
     }
+
+    // Update theme color
+    changeThemeColor(color);
 }
 
-// Function to show specific content in the secondary sidebar
+// Function to show specific content
 function showSidebarContent(contentId) {
-    // Hide all contents
-    const allContents = document.querySelectorAll('.sidebar-content');
-    allContents.forEach(content => {
+    document.querySelectorAll('.sidebar-content').forEach(content => {
         content.style.display = 'none';
     });
 
-    // Show the selected content
     const selectedContent = document.getElementById(`content-${contentId}`);
     if (selectedContent) {
         selectedContent.style.display = 'block';
     }
 }
 
-// Close menu on item click (mobile)
-document.addEventListener('DOMContentLoaded', function() {
-    // Add event listeners for menu items
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent default navigation
-
-            const color = item.getAttribute('data-color');
-            const content = item.getAttribute('data-content');
-            
-            if (color && content) {
-                handleMenuClick(color, content);
-            }
-        });
-    });
-
-    // Ensure the backdrop works
-    const backdrop = document.querySelector('.menu-backdrop');
-    if (backdrop) {
-        backdrop.addEventListener('click', toggleMenu);
-    }
-
-    // Ensure the toggle button works
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', toggleMenu);
-    }
-
-    // Initialize with the first item (Home)
-    showSidebarContent('home');
-});
-
-function initializeProfileCards() {
-    const profileCards = document.querySelectorAll('.profile-card');
-    
-    profileCards.forEach(card => {
-        card.style.cursor = 'pointer';
-        
-        card.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const pageUrl = this.dataset.page;
-            
-            if (pageUrl) {
-                loadPage(pageUrl, true);
-            }
-        });
-    });
-}
-
-
 // Load page via AJAX
 function loadPage(url, updateHistory = true) {
-    // Show loading state
     const mainContent = document.getElementById('main-content');
     mainContent.style.opacity = '0.5';
-    
+
     fetch(url)
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Page not found');
-            }
+            if (!response.ok) throw new Error('Page not found');
             return response.text();
         })
         .then(html => {
-            // Update main content area
             mainContent.innerHTML = html;
             mainContent.style.opacity = '1';
-            
-            // Update URL without reload
+
             if (updateHistory) {
                 const cleanUrl = 'index2.php?page=' + url.replace('pages/', '').replace('.php', '');
-                history.pushState({page: url}, '', cleanUrl);
+                history.pushState({ page: url }, '', cleanUrl);
             }
-            
-            // Re-initialize any JavaScript that needs to run on new content
+
             initializeNewContent();
         })
         .catch(error => {
@@ -199,8 +133,60 @@ function loadPage(url, updateHistory = true) {
         });
 }
 
-// Initialize JavaScript for dynamically loaded content
+// Reinitialize dynamic content
 function initializeNewContent() {
-    // Add any initialization code for dynamically loaded pages here
-    // For example, if you have forms or interactive elements in the loaded pages
+    // Add anything needed for dynamic pages
 }
+
+function initializeProfileCards() {
+    const profileCards = document.querySelectorAll('.profile-card');
+
+    profileCards.forEach(card => {
+        card.style.cursor = 'pointer';
+
+        card.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const pageUrl = this.dataset.page;
+
+            if (pageUrl) {
+                loadPage(pageUrl, true);
+            }
+        });
+    });
+}
+
+// Unified DOMContentLoaded block
+document.addEventListener('DOMContentLoaded', function () {
+    initializeProfileCards();
+    initializeNavItems();
+
+    const backdrop = document.querySelector('.menu-backdrop');
+    if (backdrop) backdrop.addEventListener('click', toggleMenu);
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
+
+    // Stelle den Menüzustand bei Reload her
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('page');
+
+    if (pageParam) {
+        const contentKey = pageParam.split('/')[0];
+        const activeItem = document.querySelector(`.nav-item[data-content="${contentKey}"]`);
+        if (activeItem) {
+            const color = activeItem.getAttribute('data-color');
+            handleMenuClick(color, contentKey);
+        }
+    } else {
+        // Fallback
+        showSidebarContent('home');
+    }
+
+    // Handle back/forward browser navigation
+    window.addEventListener('popstate', function (e) {
+        if (e.state && e.state.page) {
+            loadPage(e.state.page, false);
+        }
+    });
+});
