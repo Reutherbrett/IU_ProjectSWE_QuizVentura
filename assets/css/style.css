@@ -166,7 +166,6 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* about/dasProjekt.php */
 .card.card-vertical{
     display: flex;
     flex-direction: column;
