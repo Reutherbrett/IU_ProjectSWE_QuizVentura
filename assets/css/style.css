@@ -166,6 +166,12 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/* about/dasProjekt.php */
+.card.card-vertical{
+    display: flex;
+    flex-direction: column;
+}
+
 .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
