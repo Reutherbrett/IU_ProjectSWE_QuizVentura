@@ -199,6 +199,11 @@ body {
     border-bottom: none;
 }
 
+.header-link {
+    text-decoration: none; 
+    color: inherit;
+}
+
 /* Mobile menu backdrop */
 .menu-backdrop {
     display: none;

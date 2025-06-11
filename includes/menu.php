@@ -17,7 +17,7 @@ $menu_items = [
 <!-- Main Sidebar -->
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <h1>QuizVentura</h1>
+          <h1><a href="index2.php" class="header-link" >QuizVentura</a></h1>
     </div>
     <nav>
         <ul class="nav-menu">

@@ -23,7 +23,7 @@
 <!--    <button class="menu-toggle" onclick="toggleMenu()">☰</button> -->
         <!-- Event-Listener per JavaScript -->
         <button class="menu-toggle">☰</button>
-        <h1>QuizVentura</h1>
+        <h1><a href="index2.php" class="header-link" >QuizVentura</a></h1>
         <div style="width: 40px;"></div>
     </header>
 
