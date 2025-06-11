@@ -5,7 +5,7 @@
  */
 
 // User data (usually from session or database)
-$user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Usuário';
+$user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'User';
 $user_role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'Dashboard';
 ?>
 

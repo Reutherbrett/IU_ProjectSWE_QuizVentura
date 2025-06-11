@@ -11,10 +11,10 @@
        #F26419 - Orange (Pantone)
     */
     
-    --text-primary: #ffffff;
+    --text-primary: #f7f7f7;
     --text-secondary: #333333;
-    --background: #f5f5f5;
-    --card-background: #ffffff;
+    --background: #f7f7f7;
+    --card-background: #f7f7f7;
     --border-color: #e0e0e0;
     
     /* Cor com opacidade para o segundo menu */
@@ -42,7 +42,7 @@ body {
 
 /* Sidebar (Main menu) */
 .sidebar {
-    width: 280px;
+    width: 130px;
     background-color: var(--primary-color);
     color: var(--text-primary);
     transition: transform 0.3s ease, background-color 0.3s ease;
