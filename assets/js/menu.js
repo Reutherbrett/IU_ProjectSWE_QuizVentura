@@ -69,6 +69,14 @@ const MenuManager = {
         if (selectedContent) {
             selectedContent.style.display = 'block';
         }
+        
+        // Force refresh secondary sidebar styling to ensure correct colors
+        if (window.ThemeManager) {
+            // Small delay to ensure content has switched before refreshing
+            setTimeout(() => {
+                window.ThemeManager.refreshSecondarySidebar();
+            }, 50);
+        }
     },
 
     /**
