@@ -42,7 +42,7 @@ body {
 
 /* Sidebar (Main menu) */
 .sidebar {
-    width: 130px;
+    width: 240px;
     background-color: var(--primary-color);
     color: var(--text-primary);
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -55,8 +55,10 @@ body {
 }
 
 .sidebar-header {
-    padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 26px;
+    padding-left: 20px;
+    padding: 16px;
+    border-bottom: 0px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-header h1 {
@@ -81,7 +83,7 @@ body {
 }
 
 .nav-item {
-    padding: 15px 20px;
+    padding: 12px 20px;
     cursor: pointer;
     transition: background-color 0.2s;
     user-select: none;
@@ -93,10 +95,10 @@ body {
 
 /* Secondary menu */
 .secondary-sidebar {
-    width: 200px;
+    width: 300px;
     background-color: var(--secondary-menu-bg);
     padding: 20px;
-    margin-left: 280px;
+    margin-left: 240px;
     position: fixed;
     height: 100vh;
     left: 0;
@@ -113,10 +115,10 @@ body {
 
 .profile-card {
     background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-radius: 10px;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     text-align: center;
     backdrop-filter: blur(10px);
     transition: transform 0.2s, box-shadow 0.2s;

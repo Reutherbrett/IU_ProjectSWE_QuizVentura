@@ -31,7 +31,7 @@ $user_role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'Dashboard
     <div class="sidebar-content" id="content-dashboard" style="display: none;">
         <div class="profile-card" data-page="pages/dashboard/meinDashboard.php">
                 <h4>Mein Dashboard</h4>
-                <p style="font-size: 14px; opacity: 0.8;">Überblick über meine Aktivitäten</p>
+                <p style="font-size: 14px; margin-top: 10px;">Überblick über meine Aktivitäten</p>
         </div>
         <div class="profile-card" data-page="pages/dashboard/meinProfil.php">
             <h4>Profileinstellungen</h4>
