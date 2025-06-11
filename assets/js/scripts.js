@@ -300,33 +300,33 @@ window.changeThemeColor = changeThemeColor;
 window.loadPage = loadPage;
 
 // Close menu on item click (mobile)
-// document.addEventListener('DOMContentLoaded', function() {
-//     // Add event listeners for menu items
-//     document.querySelectorAll('.nav-item').forEach(item => {
-//         item.addEventListener('click', (e) => {
-//             e.preventDefault(); // Prevent default navigation
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners for menu items
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default navigation
 
-//             const color = item.getAttribute('data-color');
-//             const content = item.getAttribute('data-content');
+            const color = item.getAttribute('data-color');
+            const content = item.getAttribute('data-content');
             
-//             if (color && content) {
-//                 handleMenuClick(color, content);
-//             }
-//         });
-//     });
+            if (color && content) {
+                handleMenuClick(color, content);
+            }
+        });
+    });
 
-//     // Ensure the backdrop works
-//     const backdrop = document.querySelector('.menu-backdrop');
-//     if (backdrop) {
-//         backdrop.addEventListener('click', toggleMenu);
-//     }
+    // Ensure the backdrop works
+    const backdrop = document.querySelector('.menu-backdrop');
+    if (backdrop) {
+        backdrop.addEventListener('click', toggleMenu);
+    }
 
-//     // Ensure the toggle button works
-//     const menuToggle = document.querySelector('.menu-toggle');
-//     if (menuToggle) {
-//         menuToggle.addEventListener('click', toggleMenu);
-//     }
+    // Ensure the toggle button works
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleMenu);
+    }
 
-//     // Initialize with the first item (Home)
-//     showSidebarContent('home');
-// });
+    // Initialize with the first item (Home)
+    showSidebarContent('home');
+});
