@@ -1,9 +1,16 @@
 /**
  * AJAX and Page Loading Management
- * Handles all AJAX requests and dynamic page loading with Safari optimization
+ * Optimized version without history management for better performance
  */
 
 const AjaxManager = {
+    // Cache for loaded content (optional - can be disabled)
+    contentCache: new Map(),
+    maxCacheSize: 5, // Limit cache size to prevent memory bloat
+    
+    // Track active requests to prevent duplicate calls
+    activeRequests: new Set(),
+
     /**
      * Create XMLHttpRequest object with Safari compatibility
      * @returns {XMLHttpRequest|null}
@@ -26,13 +33,24 @@ const AjaxManager = {
     },
 
     /**
-     * Enhanced fetch with Safari compatibility
+     * Enhanced fetch with Safari compatibility and performance optimization
      * @param {string} url - URL to fetch
      * @param {Object} options - Fetch options
      * @returns {Promise}
      */
     safeFetch(url, options = {}) {
-        // Safari-specific headers and options
+        // Check if request is already in progress
+        if (this.activeRequests.has(url)) {
+            return Promise.reject(new Error('Request already in progress'));
+        }
+
+        // Check cache first (if enabled)
+        if (this.contentCache.has(url)) {
+            return Promise.resolve(this.contentCache.get(url));
+        }
+
+        this.activeRequests.add(url);
+
         const defaultOptions = {
             method: 'GET',
             headers: {
@@ -47,7 +65,10 @@ const AjaxManager = {
         
         const finalOptions = { ...defaultOptions, ...options };
         
-        // Use fetch if available, fallback to XHR for older Safari
+        const cleanup = () => {
+            this.activeRequests.delete(url);
+        };
+
         if (typeof fetch !== 'undefined') {
             return fetch(url, finalOptions)
                 .then(response => {
@@ -55,19 +76,23 @@ const AjaxManager = {
                         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                     }
                     return response.text();
-                });
+                })
+                .then(html => {
+                    this.addToCache(url, html);
+                    return html;
+                })
+                .finally(cleanup);
         } else {
-            // Fallback XHR for older Safari versions
             return new Promise((resolve, reject) => {
                 const xhr = this.createXHR();
                 if (!xhr) {
+                    cleanup();
                     reject(new Error('XMLHttpRequest not supported'));
                     return;
                 }
                 
                 xhr.open(finalOptions.method, url, true);
                 
-                // Set headers
                 if (finalOptions.headers) {
                     Object.keys(finalOptions.headers).forEach(key => {
                         xhr.setRequestHeader(key, finalOptions.headers[key]);
@@ -77,14 +102,17 @@ const AjaxManager = {
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4) {
                         if (xhr.status >= 200 && xhr.status < 300) {
+                            AjaxManager.addToCache(url, xhr.responseText);
                             resolve(xhr.responseText);
                         } else {
                             reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`));
                         }
+                        cleanup();
                     }
                 };
                 
                 xhr.onerror = function() {
+                    cleanup();
                     reject(new Error('Network error'));
                 };
                 
@@ -94,37 +122,79 @@ const AjaxManager = {
     },
 
     /**
-     * Load page via AJAX with Safari optimization
-     * @param {string} url - Page URL to load
-     * @param {boolean} updateHistory - Whether to update browser history
+     * Add content to cache with size management
+     * @param {string} url - URL key
+     * @param {string} content - HTML content
      */
-    loadPage(url, updateHistory = true) {
+    addToCache(url, content) {
+        // Manage cache size
+        if (this.contentCache.size >= this.maxCacheSize) {
+            const firstKey = this.contentCache.keys().next().value;
+            this.contentCache.delete(firstKey);
+        }
+        
+        this.contentCache.set(url, content);
+    },
+
+    /**
+     * Clear cache to free memory
+     */
+    clearCache() {
+        this.contentCache.clear();
+    },
+
+    /**
+     * Load page via AJAX with performance optimization
+     * @param {string} url - Page URL to load
+     */
+    loadPage(url) {
         const mainContent = document.getElementById('main-content');
         if (!mainContent) {
             console.error('Main content element not found');
             return;
         }
         
+        // Clean up previous content to prevent memory leaks
+        this.cleanupContent(mainContent);
+        
         // Show loading state
         this.showLoadingState(mainContent);
         
-        // Add timestamp to prevent Safari caching issues
-        const separator = url.includes('?') ? '&' : '?';
-        const urlWithTimestamp = `${url}${separator}_t=${Date.now()}`;
-        
-        this.safeFetch(urlWithTimestamp)
+        // Simple URL without timestamp (rely on cache headers instead)
+        this.safeFetch(url)
             .then(html => {
                 this.updateContent(mainContent, html);
-                
-                if (updateHistory) {
-                    this.updateHistory(url);
-                }
-                
                 this.initializeNewContent();
             })
             .catch(error => {
                 this.showErrorState(mainContent, error);
             });
+    },
+
+    /**
+     * Clean up content to prevent memory leaks
+     * @param {HTMLElement} element - Content element
+     */
+    cleanupContent(element) {
+        // Remove all event listeners from child elements
+        const elementsWithListeners = element.querySelectorAll('[data-has-listeners]');
+        elementsWithListeners.forEach(el => {
+            el.removeAttribute('data-has-listeners');
+            // Clone and replace to remove all event listeners
+            const newEl = el.cloneNode(true);
+            el.parentNode.replaceChild(newEl, el);
+        });
+
+        // Clear any timers or intervals that might be running
+        if (element._timers) {
+            element._timers.forEach(timer => clearTimeout(timer));
+            delete element._timers;
+        }
+
+        if (element._intervals) {
+            element._intervals.forEach(interval => clearInterval(interval));
+            delete element._intervals;
+        }
     },
 
     /**
@@ -160,51 +230,37 @@ const AjaxManager = {
     },
 
     /**
-     * Update browser history
-     * @param {string} url - Page URL
+     * Initialize JavaScript for dynamically loaded content
      */
-    updateHistory(url) {
-        if (window.history && window.history.pushState) {
-            try {
-                const cleanUrl = 'index.php?page=' + url.replace('pages/', '').replace('.php', '');
-                window.history.pushState({page: url}, '', cleanUrl);
-            } catch (e) {
-                console.warn('History API not fully supported:', e);
+    initializeNewContent() {
+        // Only initialize new profile cards that haven't been initialized yet
+        if (window.MenuManager) {
+            const uninitializedCards = document.querySelectorAll('.profile-card:not([data-card-initialized])');
+            if (uninitializedCards.length > 0) {
+                window.MenuManager.initializeNavigation();
             }
         }
     },
 
     /**
-     * Initialize JavaScript for dynamically loaded content
-     */
-    initializeNewContent() {
-        // Re-initialize any form handlers, event listeners, etc.
-        // This is where you'd add code to handle newly loaded content
-        
-        // Example: Re-initialize tooltips, form validation, etc.
-        if (window.MenuManager) {
-            window.MenuManager.initializeNavigation();
-        }
-    },
-
-    /**
-     * Initialize AJAX manager
+     * Initialize AJAX manager (simplified - no history)
      */
     init() {
-        // Handle browser back/forward buttons
-        if (window.history && window.history.pushState) {
-            window.addEventListener('popstate', (e) => {
-                if (e.state && e.state.page) {
-                    this.loadPage(e.state.page, false);
-                }
-            });
-        }
+        // Optional: Clear cache periodically to prevent memory bloat
+        setInterval(() => {
+            if (this.contentCache.size > 0) {
+                console.log('Clearing AJAX cache to free memory');
+                this.clearCache();
+            }
+        }, 300000); // Clear every 5 minutes
 
         // Handle page visibility changes (Safari optimization)
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) {
-                // Page became visible, refresh any dynamic content if needed
-                // This helps with Safari's aggressive caching
+                // Page became visible - clear cache if it's getting large
+                if (this.contentCache.size >= this.maxCacheSize) {
+                    this.clearCache();
+                }
             }
         });
     }
