@@ -27,7 +27,13 @@
 <body>
     <!-- Mobile Header -->
     <header class="mobile-header">
+<<<<<<< HEAD
         <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+=======
+<!--    <button class="menu-toggle" onclick="toggleMenu()">☰</button> -->
+        <!-- Event-Listener per JavaScript -->
+        <button class="menu-toggle">☰</button>
+>>>>>>> origin/dev
         <h1>QuizVentura</h1>
         <div style="width: 40px;"></div>
     </header>
