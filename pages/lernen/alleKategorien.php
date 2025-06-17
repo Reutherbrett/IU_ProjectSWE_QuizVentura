@@ -71,7 +71,7 @@ $all_quizzes = [
                    font-weight: 600; 
                    cursor: pointer; 
                    transition: background-color 0.2s;">
-        ➕ Neue Kategorie erstellen
+        Neue Kategorie erstellen
     </button>
 </div>
 

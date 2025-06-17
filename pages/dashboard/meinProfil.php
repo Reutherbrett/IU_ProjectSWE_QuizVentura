@@ -10,32 +10,17 @@
     <p>Manage your personal information</p>
 </div>
 
-<div class="page-grid">
-    <div class="card">
-        <div style="text-align: center;">
-            <h3>Personal Information</h3>
-            <p>Configure your data</p>
-        </div>
-    </div>
-    <div class="card">
-        <div style="text-align: center;">
-            <h3>Statistics</h3>
-            <p>View your performance</p>
-        </div>
-    </div>
-</div>
-
-<div class="quiz-list">
+<div class="page-list">
     <h3 style="margin-bottom: 20px;">Profile Settings</h3>
-    <div class="quiz-item">
+    <div class="list-item">
         <span>Username</span>
         <span>Edit</span>
     </div>
-    <div class="quiz-item">
+    <div class="list-item">
         <span>Email</span>
         <span>Edit</span>
     </div>
-    <div class="quiz-item">
+    <div class="list-item">
         <span>Password</span>
         <span>Change</span>
     </div>
