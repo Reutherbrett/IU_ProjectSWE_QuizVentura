@@ -55,12 +55,12 @@
 </div>
 
 <!-- Projekt-Motivation, Zukunft -->
-<div class="quiz-list" style="margin-top: 40px;">
+<div class="page-list" style="margin-top: 40px;">
     <h3 style="margin-bottom: 20px;">Hintergrund & Ausblick</h3>
-    <div class="quiz-item">
+    <div class="list-item">
         <span>Warum dieses Projekt ins Leben gerufen wurde.</span>
     </div>
-    <div class="quiz-item">
+    <div class="list-item">
         <span>Wie sich QuizVentura in Zukunft entwickeln könnte.</span>
     </div>
 </div>

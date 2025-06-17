@@ -43,12 +43,14 @@ $team = [
 
 <div class="page-grid">
     <?php foreach ($team as $member): ?>
-        <div class="card card-vertical" style="text-align: center;">
-            <img src="<?php echo $member['image']; ?>" alt="Foto von <?php echo $member['name']; ?>" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+        <div class="card card-vertical text-center">
+            <img src="<?php echo $member['image']; ?>" 
+                 alt="Foto von <?php echo $member['name']; ?>" 
+                 class="team-member-image">
             <h4><?php echo htmlspecialchars($member['name']); ?></h4>
-            <p style="color: #888; font-size: 14px;"><?php echo htmlspecialchars($member['role']); ?></p>
-            <p style="margin: 10px 0;"><?php echo htmlspecialchars($member['bio']); ?></p>
-            <div style="font-size: 13px;">
+            <p class="team-role"><?php echo htmlspecialchars($member['role']); ?></p>
+            <p class="team-bio"><?php echo htmlspecialchars($member['bio']); ?></p>
+            <div class="team-skills">
                 <strong>Skills:</strong>
                 <?php echo implode(', ', $member['skills']); ?>
             </div>
