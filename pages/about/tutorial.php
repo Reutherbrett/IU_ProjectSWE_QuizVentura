@@ -34,7 +34,7 @@ $faqs = [
     <ul style="margin-left: 20px; color: #555;">
         <li>📈 <strong>Dashboard</strong>: Deinen Fortschritt und Statistiken ansehen</li>
         <li>📚 <strong>Lernen</strong>: Kategorien erkunden und Wissen aufbauen</li>
-        <li>🎮 <strong>Spielen</strong>: Quizzes lösen und Punkte sammeln</li><
+        <li>🎮 <strong>Spielen</strong>: Quizzes lösen und Punkte sammeln</li>
     </ul>
 </div>
 

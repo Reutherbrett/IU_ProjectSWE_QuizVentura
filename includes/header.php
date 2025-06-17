@@ -28,7 +28,6 @@
     <!-- Mobile Header -->
     <header class="mobile-header">
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <div style="width: 40px;"></div>
     </header>
 
     <!-- Menu Backdrop -->

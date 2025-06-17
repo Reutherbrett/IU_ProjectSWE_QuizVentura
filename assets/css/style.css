@@ -137,7 +137,6 @@ body {
 }
 
 .profile-card:hover {
-    /* transform: translateY(-2px); */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -145,9 +144,11 @@ body {
 .main-content {
     flex: 1;
     transition: opacity 0.3s ease;
+    margin-top: 20px;
     padding-top: 10px;
     padding-bottom: 20px;
-    padding-left: 40px; /* Adjust based on your sidebar widths */
+    padding-left: 40px;
+    padding-right: 40px;
     margin-left: 550px; /* Adjust based on your sidebar widths */
 }
 
@@ -159,6 +160,7 @@ body {
     font-size: 50px;
     font-family: "Alkatra", system-ui;
     font-weight: 700;
+    line-height: 99%;
     color: var(--text-secondary);
     margin-bottom: 10px;
 }
@@ -230,8 +232,9 @@ body {
 /* Mobile header */
 .mobile-header {
     display: none;
+    height: 50px;
     background-color: var(--primary-color);
-    padding: 15px;
+    padding: 10px;
     position: fixed;
     top: 0;
     left: 0;
@@ -257,7 +260,7 @@ body {
         width: 300px;
         margin-top: 0;
         margin-left: 0;
-        padding-top: 100px;
+        padding-top: 70px;
         position: static;
         height: auto;
         border-right: none;
@@ -272,8 +275,8 @@ body {
     }
 
     .main-content {
-        margin-left: 25px;
-        padding-top: 100px;
+        margin-left: 10px;
+        padding-top: 20px;
     }
 
     .mobile-header {
@@ -323,10 +326,6 @@ body {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .sidebar.active {
-        transform: translateY(0);
-    }
-
     .menu-toggle {
         min-width: 44px;
         min-height: 44px;
@@ -339,6 +338,10 @@ body {
         min-height: 44px;
         display: flex;
         align-items: center;
+    }
+
+    .sidebar.active {
+        transform: translateY(0);
     }
 
     .secondary-sidebar {
@@ -378,8 +381,6 @@ body {
         text-align: left;
         gap: 15px;
         margin-bottom: 10px;
-        /* min-height: 44px;
-        padding: 15px; */
     }
 
     .quiz-list {
@@ -396,12 +397,5 @@ body {
     .sidebar {
         max-height: 60vh;
     }
-    
-    .main-content {
-        padding: 15px;
-    }
-    
-    .page-header h2 {
-        font-size: 20px;
-    }
+
 }
