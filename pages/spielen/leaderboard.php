@@ -48,7 +48,7 @@ function formatDate($date) {
 
 <div class="page-header">
     <h2>Leaderboard</h2>
-    <p>Die Champions von QuizVentura</p>
+    <p>Die Champions von QuizVentura.</p>
 </div>
 
 <!-- Top 3 Winners Highlight -->
