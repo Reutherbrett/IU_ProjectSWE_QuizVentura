@@ -1015,13 +1015,29 @@ ul li {
     }
 
     .card {
-        mi-height: 120px;
+        min-height: 120px;
     }
 
     .leaderboard-header,
     .leaderboard-row {
         grid-template-columns: 60px 1fr 60px;
         gap: 5px;
+    }
+
+    /* Dashboard specific override - show quiz names */
+    .dashboard-leaderboard .leaderboard-header,
+    .dashboard-leaderboard .leaderboard-row {
+        grid-template-columns: 50px 1fr 70px; /* Adjusted for better fit */
+        gap: 8px;
+    }
+    
+    .dashboard-leaderboard .category-col {
+        display: block; /* Show quiz names on dashboard */
+    }
+    
+    .dashboard-leaderboard .category-badge {
+        font-size: 14px; /* Smaller text for mobile */
+        padding: 2px 6px;
     }
     
     .category-col,

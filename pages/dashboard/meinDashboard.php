@@ -87,6 +87,5 @@ function getScoreClass($score) {
     .leaderboard-row {
     grid-template-columns: 80px 2fr 80px; /* Changed from 80px 1fr 1fr 100px */
     gap: 15px;
-
 }
 </style>
