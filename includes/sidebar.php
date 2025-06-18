@@ -49,7 +49,7 @@ $user_role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'Dashboard
             <p>Alle Quizze</p>
         </div>
         <div class="profile-card" data-page="pages/lernen/neueKategorie.php">
-            <h4>Neue Kategorie anlegen</h4>
+            <h4>Neue Kategorie Anlegen</h4>
             <p>Fragen hinzufügen</p>
         </div>
     </div>
