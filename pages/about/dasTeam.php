@@ -44,7 +44,7 @@ $team = [
 
 <div class="page-grid">
     <?php foreach ($team as $member): ?>
-        <div class="card card-vertical text-center">
+        <div class="card card-display card-vertical text-center">
             <img src="<?php echo $member['image']; ?>" 
                  alt="Foto von <?php echo $member['name']; ?>" 
                  class="team-member-image">

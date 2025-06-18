@@ -12,7 +12,7 @@
 <!-- Projektbeschreibung -->
 <h3 class="section-title">Überblick</h3>
 <div class="page-grid">
-    <div class="card card-vertical">
+    <div class="card card-display card-vertical">
         <h4>Was ist QuizVentura?</h4>
         <p>
         Unsere Webanwendung ist ein intuitiv bedienbares, vollständig browserbasiertes Quizsystem, das Lernen und Spielspaß miteinander verbindet.
@@ -23,7 +23,7 @@
         </p>
     </div>
 
-    <div class="card card-vertical">
+    <div class="card card-display card-vertical">
         <h4>Ziele des Projekts?</h4>
         <p>
         Unsere geplante Webanwendung bietet Studierenden eine interaktive und kollaborative Plattform zur strukturierten Prüfungsvorbereitung. Nutzer können Quizfragen
@@ -37,7 +37,7 @@
 <!-- Sektion für Hintergrundinfos -->
 <h3 class="section-title">Weitere Informationen</h3>
 <div class="page-grid">
-    <div class="card card-vertical">
+    <div class="card card-display card-vertical">
         <h4>Technologie?</h4>
         <p>
         Unsere Anwendung wird mit einem modernen, praxisorientierten Technologie-Stack entwickelt, der Performance, Skalierbarkeit und Wartbarkeit in den Fokus stellt. 
@@ -47,7 +47,7 @@
         </p>
     </div>
 
-    <div class="card card-vertical">
+    <div class="card card-display card-vertical">
         <h4>Entwicklerteam?</h4>
         <p>
             Sobald Login vorhanden ist. 

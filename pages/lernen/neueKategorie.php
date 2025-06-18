@@ -17,7 +17,7 @@ if ($_POST && isset($_POST['save_category'])) {
 
 <div class="page-header">
     <h2>Neue Kategorie</h2>
-    <p>Erstellen Sie eine neue Quiz-Kategorie</p>
+    <p>Erstelle eine neue Quiz-Kategorie.</p>
 </div>
 
 <form method="POST" style="max-width: 800px;">

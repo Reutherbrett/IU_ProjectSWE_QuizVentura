@@ -24,38 +24,30 @@ $all_quizzes = [
 
 <div class="page-header">
     <h2>Alle Kategorien</h2>
-    <p>Entdeck alle verfügbaren Quizzes!</p>
+    <p>Entdeck alle verfügbaren Quizzes.</p>
 </div>
 
 <!-- Favorite Quizzes Section -->
-<h3 class="section-title">⭐ Deine Lieblings-Quizzes</h3>
+<h3>Deine Lieblings-Quizzes</h3>
 <div class="page-grid">
     <?php foreach ($favorite_quizzes as $quiz): ?>
-        <div class="card" onclick="window.location.href='aktiveKategorie.php?id=<?php echo $quiz['id']; ?>'" style="cursor: pointer;">
-            <div class="card-vertical text-center">
-                <span style="font-size: 48px;" class="mb-15"><?php echo $quiz['icon']; ?></span>
-                <h4 class="mb-10"><?php echo htmlspecialchars($quiz['name']); ?></h4>
-                <div class="stats-grid">
-                    <span><?php echo $quiz['questions_count']; ?> Fragen</span>
-                </div>
-            </div>
-        </div>
+    <div class="card card-button text-center" onclick="handleClick()">
+        <span class="quiz-card-icon"><?php echo $quiz['icon']; ?></span>
+        <span class="quiz-card-title"><?php echo htmlspecialchars($quiz['name']); ?></span>
+        <span class="quiz-card-info"><?php echo $quiz['questions_count']; ?> Fragen</span>
+    </div>
     <?php endforeach; ?>
 </div>
 
 <!-- All Quizzes Section -->
-<h3 class="section-title">Alle Quizzes</h3>
+<h3>Alle Quizzes</h3>
 <div class="page-grid">
     <?php foreach ($all_quizzes as $quiz): ?>
-        <div class="card" onclick="window.location.href='aktiveKategorie.php?id=<?php echo $quiz['id']; ?>'" style="cursor: pointer;">
-            <div class="card-vertical text-center">
-                <span style="font-size: 48px;" class="mb-15"><?php echo $quiz['icon']; ?></span>
-                <h4 class="mb-10"><?php echo htmlspecialchars($quiz['name']); ?></h4>
-                <div class="stats-grid">
-                    <span><?php echo $quiz['questions_count']; ?> Fragen</span>
-                </div>
-            </div>
-        </div>
+    <div class="card card-button text-center" onclick="handleClick()">
+        <span class="quiz-card-icon"><?php echo $quiz['icon']; ?></span>
+        <span class="quiz-card-title"><?php echo htmlspecialchars($quiz['name']); ?></span>
+        <span class="quiz-card-info"><?php echo $quiz['questions_count']; ?> Fragen</span>
+    </div>
     <?php endforeach; ?>
 </div>
 
