@@ -48,7 +48,7 @@ function formatDate($date) {
 
 <div class="page-header">
     <h2>Leaderboard</h2>
-    <p>Die besten Quiz-Champions von QuizVentura</p>
+    <p>Die Champions von QuizVentura</p>
 </div>
 
 <!-- Top 3 Winners Highlight -->
@@ -71,12 +71,12 @@ function formatDate($date) {
 
 <!-- Complete Leaderboard -->
 <h3>Vollständige Rangliste</h3>
+<div class="page-section">
 <div class="leaderboard-container">
     <div class="leaderboard-header">
         <div class="rank-col">Rang</div>
         <div class="player-col">Spieler</div>
         <div class="category-col">Kategorie</div>
-        <div class="date-col">Datum</div>
         <div class="score-col">Punkte</div>
     </div>
     
@@ -92,9 +92,6 @@ function formatDate($date) {
             <div class="category-col">
                 <span class="category-badge"><?php echo htmlspecialchars($entry['category']); ?></span>
             </div>
-            <div class="date-col">
-                <?php echo formatDate($entry['date']); ?>
-            </div>
             <div class="score-col">
                 <span class="score-value <?php echo getScoreClass($entry['score']); ?>">
                     <?php echo $entry['score']; ?>%
@@ -103,11 +100,12 @@ function formatDate($date) {
         </div>
     <?php endforeach; ?>
 </div>
+</div>
 
 <!-- Statistics Cards -->
-<h3 class="mt-40">Leaderboard-Statistiken</h3>
+<h3>Leaderboard-Statistiken</h3>
 <div class="page-grid">
-    <div class="card card-vertical text-center">
+    <div class="card card-display card-vertical text-center">
         <h4>Durchschnitt Top 5</h4>
         <div class="stat-number">
             <?php 
@@ -118,13 +116,13 @@ function formatDate($date) {
         <p class="text-secondary">Durchschnittliche Punktzahl der Top 5 Spieler</p>
     </div>
     
-    <div class="card card-vertical text-center">
+    <div class="card card-display card-vertical text-center">
         <h4>Aktivste Kategorie</h4>
         <div class="stat-number">Geschichte</div>
         <p class="text-secondary">Meistgespielte Kategorie in der Rangliste</p>
     </div>
     
-    <div class="card card-vertical text-center">
+    <div class="card card-display card-vertical text-center">
         <h4>Höchste Punktzahl</h4>
         <div class="stat-number"><?php echo $leaderboard[0]['score']; ?>%</div>
         <p class="text-secondary">Bestes Ergebnis aller Zeiten</p>
@@ -143,15 +141,15 @@ function formatDate($date) {
 }
 
 .champion-card.rank-1 {
-    border: 3px solid var(--primary-color);
+    /* border: 3px solid var(--primary-color); */
 }
 
 .champion-card.rank-2 {
-    border: 3px solid var(--primary-color);
+    /* border: 3px solid var(--primary-color); */
 }
 
 .champion-card.rank-3 {
-    border: 3px solid var(--primary-color);
+    /* border: 3px solid var(--primary-color); */
 }
 
 .champion-trophy {
@@ -162,7 +160,7 @@ function formatDate($date) {
 .champion-name {
     font-size: 20px;
     margin-bottom: 8px;
-    color: var(--text-secondary);
+    color: var(--primary-color);
 }
 
 .champion-category {
@@ -172,8 +170,8 @@ function formatDate($date) {
 }
 
 .champion-score {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 550;
     margin-bottom: 10px;
     padding: 8px 16px;
     border-radius: 20px;
@@ -197,18 +195,17 @@ function formatDate($date) {
 
 .leaderboard-header {
     display: grid;
-    grid-template-columns: 80px 1fr 1fr 100px 100px;
+    grid-template-columns: 80px 1fr 1fr 100px;
     gap: 15px;
     padding: 20px;
     background: var(--primary-color);
-    color: white;
-    font-weight: 600;
-    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 550;
 }
 
 .leaderboard-row {
     display: grid;
-    grid-template-columns: 80px 1fr 1fr 100px 100px;
+    grid-template-columns: 80px 1fr 1fr 100px;
     gap: 15px;
     padding: 15px 20px;
     border-bottom: 1px solid var(--border-color);
@@ -217,7 +214,7 @@ function formatDate($date) {
 }
 
 .leaderboard-row:hover {
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
 }
 
 .leaderboard-row:last-child {
@@ -225,7 +222,7 @@ function formatDate($date) {
 }
 
 .leaderboard-row.top-three {
-    background: linear-gradient(90deg, rgba(242, 100, 25, 0.05) 0%, rgba(242, 100, 25, 0.02) 100%);
+    /* background: linear-gradient(90deg, rgba(242, 100, 25, 0.05) 0%, rgba(242, 100, 25, 0.02) 100%); */
 }
 
 .rank-col {
@@ -235,8 +232,8 @@ function formatDate($date) {
 }
 
 .rank-number {
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 550;
+    font-size: 16px;
     min-width: 20px;
 }
 
@@ -245,16 +242,12 @@ function formatDate($date) {
 }
 
 .category-badge {
-    /* background: rgba(242, 100, 25, 0.1); */
-    color: var(--primary-color);
     padding: 4px 8px;
     border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
 }
 
 .score-value {
-    font-weight: 700;
+    font-weight: 550;
     padding: 4px 8px;
     border-radius: 8px;
     font-size: 16px;
@@ -262,29 +255,29 @@ function formatDate($date) {
 
 /* Score color classes */
 .score-excellent {
-    background: #d4edda;
-    color: #155724;
+    background: rgba(0, 188, 212, 0.15); /* Moonstone with transparency */
+    color: #006064; /* Darker Moonstone */
 }
 
 .score-great {
-    background: #d1ecf1;
-    color: #0c5460;
+    background: rgba(98, 0, 234, 0.15); /* Electric Indigo with transparency */
+    color: #4527A0; /* Darker Electric Indigo */
 }
 
 .score-good {
-    background: #fff3cd;
-    color: #856404;
+    background: rgba(242, 100, 25, 0.12); /* Orange (Pantone) with transparency */
+    color: #D14F0F; /* Darker Orange (Pantone) */
 }
 
 .score-normal {
-    background: #f8d7da;
-    color: #721c24;
+    background: rgba(255, 82, 82, 0.15); /* Bittersweet with transparency */
+    color: #C62828; /* Darker Bittersweet */
 }
 
 /* Statistics */
 .stat-number {
     font-size: 36px;
-    font-weight: 700;
+    font-weight: 550;
     color: var(--primary-color);
     margin: 10px 0;
 }
