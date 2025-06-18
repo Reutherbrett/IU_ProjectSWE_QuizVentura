@@ -1,37 +1,3 @@
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    background-color: white;
-
-}
-
-h2 {
-    font-size: 3rem;
-    font-family: "Alkatra", system-ui;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 10px;
-    margin: 0;
-}
-
-h3 {
-    font-size: 1.8rem;
-    font-family: "Alkatra", system-ui;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 10px;
-    margin: 0;
-}
-
-h4 {
-    font-size: 1.9rem;
-    font-family: "Alkatra", system-ui;
-    font-weight: 700;
-    color: grey;
-    margin-bottom: 10px;
-    margin: 0;
-}
-
-
 * {
   box-sizing: border-box;
 }
@@ -42,10 +8,15 @@ html, body {
   height: 100%;
 }
 
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background-color: #f7f7f7;
+
+}
 
 .app-container {
   background-color: #6200EA;
-  color: white;
+  color: #f7f7f7;
   width: 100vw;
   height: 50vh; /* ganze Bildschirmhöhe */
   display: flex;
@@ -58,33 +29,81 @@ html, body {
 .content {
   width: 70%;
   margin: 50px auto;        /* zentriert den Block horizontal */
+  padding-bottom: 40px;    /* Abstand nach unten */
   text-align: left;      /* sorgt für linksbündigen Text */
 }
 
+p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+h2 {
+    font-size: 3.2rem;
+    font-family: "Alkatra", system-ui;
+    font-weight: 700;
+    color: #f7f7f7;
+    margin-bottom: 10px;
+    margin: 0;
+}
+
+h3 {
+    font-size: 2.0rem;
+    font-family: "Alkatra", system-ui;
+    font-weight: 700;
+    color: #f7f7f7;
+    margin-bottom: 10px;
+    margin: 0;
+}
+
+h4 {
+    font-size: 2.0rem;
+    font-family: "Alkatra", system-ui;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 10px;
+    margin: 0;
+}
+
+.login-input {
+    background-color: transparent;
+    color: #333333;
+    padding: 12px 25px;
+    border: 2px solid #00bcd4;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: semibold;
+    outline: none;
+    transition: border-color 0.3s ease;
+    text-align: center;
+    width: 200px; /* Adjust width as needed */
+}
+
+.login-input:focus {
+    border-color: #6200EA;
+}
+
+.login-input::placeholder {
+    color: #999999;
+}
 
 .login-button {
   background-color: #00bcd4; /* A bright cyan-blue */
-  color: #ffffff;            /* White text */
-  padding: 12px 70px;         /* Adjust padding to control button size */
-  border: none;               /* No border */
+  color: #f7f7f7;            /* White text */
+  padding: 12px 40px;         /* Adjust padding to control button size */
+  border: 2px solid #00bcd4;
   border-radius: 25px;        /* Highly rounded corners (adjust as needed) */
-  font-family: Arial, sans-serif; /* Or any preferred sans-serif font */
   font-size: 16px;            /* Adjust font size */
   font-weight: bold;          /* Make text bold if desired */
   cursor: pointer;            /* Indicate it's clickable */
   text-decoration: none;      /* Remove underline if it's an <a> tag */
   display: inline-block;      /* Allows padding and other box model properties to work well */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
 /* Hover Effect */
 .login-button:hover {
-  background-color: #00a8bb; /* Slightly darker shade on hover */
-}
-
-/* Optional: Active/Clicked State */
-.login-button:active {
-  background-color: #0093a2; /* Even darker when clicked */
+  background-color: #6200EA;
+  border: 2px solid #6200EA;
 }
 
 /* Optional: Focus State (for keyboard navigation accessibility) */
@@ -92,6 +111,15 @@ html, body {
   outline: none; /* Remove default focus outline */
   box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.5); /* Custom focus indicator */
 }
+
+.login-form {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 15px;
+}
+
 @media (max-width: 740px) {
     h2 {
         font-size: 2rem;
@@ -113,5 +141,16 @@ html, body {
     .content {
         width: 90%;
         margin: 30px auto;
+    }
+
+    .login-form {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .login-input {
+        padding: 12px 20px;
+        width: 250px;
     }
 }
