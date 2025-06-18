@@ -56,7 +56,8 @@
 </div>
 
 <!-- Projekt-Motivation, Zukunft -->
-     <h3>Hintergrund & Ausblick</h3>
+<div class="page-section">
+<h3>Hintergrund & Ausblick</h3>
 <div class="page-list">
     <div class="list-item">
         <span>Warum dieses Projekt ins Leben gerufen wurde.</span>
@@ -64,4 +65,5 @@
     <div class="list-item">
         <span>Wie sich QuizVentura in Zukunft entwickeln könnte.</span>
     </div>
+</div>
 </div>

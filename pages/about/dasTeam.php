@@ -6,32 +6,33 @@
 // Beispiel-Teamdaten (kann später aus Datenbank kommen)
 $team = [
     [
-        'name' => 'Vorname Nachname',
-        'role' => 'Rolle',
-        'bio' => 'Verantwortlich für Organisation, Vision und UX.',
-        'skills' => ['Projektmanagement', 'Kommunikation'],
-        'image' => 'assets/img/incognito.webp'
+        'name' => 'Jannik Grooters',
+        'role' => 'Projektleiter',
+        'bio' => 'Verantwortlich für Projektkoordination, Teamführung und strategische Planung.',
+        'skills' => ['Serveradministration und Infrastrukturmanagement', 'Projektmanagement', 'Webdesign und Frontend-Entwicklung', 'Selbstständigkeit und Unternehmerische Kompetenz', 'Analytisches Denken und Problemlösungsfähigkeit'],
+        'image' => 'assets/img/team_jannik.jpg'
     ],
     [
-        'name' => 'Vorname Nachname',
-        'role' => 'Rolle',
-        'bio' => 'Verantwortlich für Organisation, Vision und UX.',
-        'skills' => ['Projektmanagement', 'Kommunikation'],
-        'image' => 'assets/img/incognito.webp'
+        'name' => 'Luana Gerber',
+        'role' => 'Frontend-Entwicklerin',
+        'bio' => 'Verantwortlich für UI/UX-Design und Frontend-Implementierung.',
+        'skills' => ['kritisches und analytisches Denken', 'Kreativität', 'Sinn für Ästhetik', 'Proaktivität',
+'Teamkoordination und Aufgabenorganisation', 'Kommunikation'],
+        'image' => 'assets/img/team_luana.jpg'
     ],
     [
-        'name' => 'Vorname Nachname',
-        'role' => 'Rolle',
-        'bio' => 'Verantwortlich für Organisation, Vision und UX.',
-        'skills' => ['Projektmanagement', 'Kommunikation'],
-        'image' => 'assets/img/incognito.webp'
+        'name' => 'Lukas Göggel',
+        'role' => 'Qualitätsmanager',
+        'bio' => 'Verantwortlich für Qualitätssicherung, Testing und Feedback-Management.',
+        'skills' => ['Softwareentwicklung', 'Daten & KI', 'Projektmanagement', 'UX & Qualitätssicherung'],
+        'image' => 'assets/img/team_lukas.jpg'
     ],
     [
-        'name' => 'Vorname Nachname',
-        'role' => 'Rolle',
-        'bio' => 'Verantwortlich für Organisation, Vision und UX.',
-        'skills' => ['Projektmanagement', 'Kommunikation'],
-        'image' => 'assets/img/incognito.webp'
+        'name' => 'Paul Reuther',
+        'role' => 'Backend-Entwickler',
+        'bio' => 'Verantwortlich für Serverarchitektur, Datenbankdesign und Backend-Entwicklung.',
+        'skills' => ['Datenbankdesign und Setup', 'Grundlagen in Java- und Python-Entwicklung', 'Windows-Troubleshooting und Setup', 'Grundwissen in Serveradministration', 'Lösungsorientiertes Denken aus 3rd-Level-Der ComSupport', 'Quiz-Wissen'],
+        'image' => 'assets/img/team_paul.jpg'
     ],
 ];
 ?>
@@ -47,7 +48,7 @@ $team = [
             <img src="<?php echo $member['image']; ?>" 
                  alt="Foto von <?php echo $member['name']; ?>" 
                  class="team-member-image">
-            <h4><?php echo htmlspecialchars($member['name']); ?></h4>
+            <h4 class="team-name"><?php echo htmlspecialchars($member['name']); ?></h4>
             <p class="team-role"><?php echo htmlspecialchars($member['role']); ?></p>
             <p class="team-bio"><?php echo htmlspecialchars($member['bio']); ?></p>
             <div class="team-skills">

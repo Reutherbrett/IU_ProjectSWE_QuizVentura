@@ -26,25 +26,27 @@ $faqs = [
 </div>
 
 <!-- Hilfebereich -->
+<div class="page-section">
+<h3>Erste Schritte</h3>
 <div class="card card-vertical mb-30">
-    <h4>Erste Schritte</h4>
-    <p>
-        Willkommen bei QuizVentura! Um loszulegen, wähle im Menü eine Funktion aus:
-    </p>
+    <p>Willkommen bei QuizVentura! Um loszulegen, wähle im Menü eine Funktion aus:</p>
     <ul class="tutorial-list">
-        <li>📈 <strong>Dashboard</strong>: Deinen Fortschritt und Statistiken ansehen</li>
-        <li>📚 <strong>Lernen</strong>: Kategorien erkunden und Wissen aufbauen</li>
-        <li>🎮 <strong>Spielen</strong>: Quizzes lösen und Punkte sammeln</li>
+        <li><strong>Dashboard</strong>: Deinen Fortschritt und Statistiken ansehen</li>
+        <li><strong>Lernen</strong>: Kategorien erkunden und Wissen aufbauen</li>
+        <li><strong>Spielen</strong>: Quizzes lösen und Punkte sammeln</li>
     </ul>
+</div>
 </div>
 
 <!-- FAQ-Bereich -->
-<div class="quiz-list">
+<div class="page-section">
     <h3 class="section-title">FAQ – Häufige Fragen</h3>
-    <?php foreach ($faqs as $faq): ?>
-        <div class="faq-item">
+    <div class="quiz-list">
+        <?php foreach ($faqs as $faq): ?>
+            <div class="faq-item">
             <strong class="faq-question"><?php echo htmlspecialchars($faq['question']); ?></strong>
             <span><?php echo htmlspecialchars($faq['answer']); ?></span>
-        </div>
-    <?php endforeach; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
 </div>
