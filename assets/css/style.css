@@ -150,6 +150,9 @@ ul li {
     padding: var(--spacing-sm) var(--spacing-xxl) var(--spacing-lg);
     margin-left: 550px;
     /* Adjust based on sidebar widths */
+    min-height: 100vh; /* Ensure minimum height */
+    overflow-y: auto; /* Allow scrolling */
+    box-sizing: border-box; /* Include padding in height calculations */
 }
 
 .page-header {
@@ -882,11 +885,19 @@ ul li {
         margin-top: 0;
         margin-left: 0;
         padding-top: 70px;
-        position: static;
-        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        overflow-y: hidden;
         border-right: none;
         background-color: var(--secondary-menu-bg);
         color: var(--text-primary);
+    }
+
+    .secondary-sidebar h1 {
+        margin-top: 5px;
+        margin-bottom: var(--spacing-md);
     }
 
     .secondary-sidebar .profile-card {
@@ -896,8 +907,10 @@ ul li {
     }
 
     .main-content {
-        margin-left: var(--spacing-sm);
-        padding-top: var(--spacing-lg);
+        margin-left: 300px;
+        padding: var(--spacing-sm) var(--spacing-xxl) var(--spacing-lg);
+        min-height: 100vh; /* Ensure full viewport height */
+        overflow-y: auto; /* Enable scrolling */
     }
 
     .mobile-header {
@@ -918,24 +931,28 @@ ul li {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    h2 {
-        font-size: 24px;
+    .app-container {
+        flex-direction: column;
     }
 
     .sidebar {
         width: 100%;
         height: auto;
-        max-height: 70vh;
-        top: 60px;
+        max-height: 65vh;
+        top: 50px;
         left: 0;
         right: 0;
         transform: translateY(-100%);
-        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .sidebar.active {
         transform: translateY(0);
+    }
+
+    .secondary-sidebar h1 {
+        margin-top: 0px;
+        margin-bottom: var(--spacing-sm);
     }
 
     .menu-toggle {
@@ -960,21 +977,30 @@ ul li {
         width: 100%;
         height: auto;
         margin-left: 0;
+        margin-top: 50px; /* Account for mobile header */
         border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         z-index: auto;
-        margin-top: 60px;
         padding: var(--spacing-md);
+        padding-bottom: var(--spacing-lg);
+        order: 1; /* Ensure it comes first */
     }
 
     .main-content {
         margin-left: 0;
         padding: var(--spacing-lg);
-        padding-top: var(--spacing-lg);
-    }
+        padding-top: var(--spacing-xl);
+        order: 2; /* Ensure it comes second */
+        min-height: auto; /* Let content determine height */
+        overflow-y: visible; /* Normal flow on mobile */
+    
 
     .page-grid {
         grid-template-columns: 1fr;
+    }
+
+
+    h2 {
+        font-size: 42px;
     }
 
     .profile-card {
@@ -989,13 +1015,13 @@ ul li {
     }
 
     .card {
-        min-height: 120px;
+        mi-height: 120px;
     }
 
     .leaderboard-header,
     .leaderboard-row {
-        grid-template-columns: 60px 1fr 80px;
-        gap: 10px;
+        grid-template-columns: 60px 1fr 60px;
+        gap: 5px;
     }
     
     .category-col,
