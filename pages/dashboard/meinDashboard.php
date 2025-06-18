@@ -11,12 +11,29 @@ $favorite_quizzes = [
 ];
 
 $top_scores = [
-    ['name' => 'Mathematik-Quiz', 'score' => '98%'],
-    ['name' => 'Deutsch-Quiz', 'score' => '95%'],
-    ['name' => 'Geschichte-Quiz', 'score' => '92%'],
-    ['name' => 'Geografie-Quiz', 'score' => '89%'],
-    ['name' => 'Wissenschafts-Quiz', 'score' => '87%']
+    ['name' => 'Mathematik-Quiz', 'score' => 98],
+    ['name' => 'Deutsch-Quiz', 'score' => 95],
+    ['name' => 'Geschichte-Quiz', 'score' => 92],
+    ['name' => 'Geografie-Quiz', 'score' => 89],
+    ['name' => 'Wissenschafts-Quiz', 'score' => 87]
 ];
+
+// Helper functions for styling (same as leaderboard)
+function getTrophyIcon($rank) {
+    switch($rank) {
+        case 1: return '🥇';
+        case 2: return '🥈';
+        case 3: return '🥉';
+        default: return '🏆';
+    }
+}
+
+function getScoreClass($score) {
+    if ($score >= 95) return 'score-excellent';
+    if ($score >= 90) return 'score-great';
+    if ($score >= 85) return 'score-good';
+    return 'score-normal';
+}
 ?>
 
 <div class="page-header">
@@ -37,12 +54,38 @@ $top_scores = [
 
 <h3>Deine besten Ergebnisse</h3>
 <div class="page-section">
-<div class="page-list">
-    <?php foreach ($top_scores as $index => $score): ?>
-        <div class="list-item">
-            <span><?php echo ($index + 1) . '. ' . htmlspecialchars($score['name']); ?></span>
-            <span class="text-primary"><?php echo htmlspecialchars($score['score']); ?></span>
+<div class="leaderboard-container dashboard-leaderboard">
+    <div class="leaderboard-header">
+        <div class="rank-col">Rang</div>
+        <div class="category-col">Quiz-Kategorie</div>
+        <div class="score-col">Punkte</div>
+    </div>
+    
+    <?php foreach($top_scores as $index => $score): 
+        $rank = $index + 1;
+    ?>
+        <div class="leaderboard-row <?php echo $rank <= 3 ? 'top-three' : ''; ?>">
+            <div class="rank-col">
+                <span class="rank-number"><?php echo $rank; ?></span>
+                <span class="rank-trophy"><?php echo getTrophyIcon($rank); ?></span>
+            </div>
+            <div class="category-col">
+                <span class="category-badge"><?php echo htmlspecialchars($score['name']); ?></span>
+            </div>
+            <div class="score-col">
+                <span class="score-value <?php echo getScoreClass($score['score']); ?>">
+                    <?php echo $score['score']; ?>%
+                </span>
+            </div>
         </div>
     <?php endforeach; ?>
 </div>
 </div>
+
+<style>
+    .leaderboard-header,
+    .leaderboard-row {
+    grid-template-columns: 80px 2fr 120px; /* Changed from 80px 1fr 1fr 100px */
+    gap: 15px;
+}
+</style>

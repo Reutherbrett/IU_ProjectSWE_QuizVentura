@@ -26,7 +26,7 @@ $additional_scripts = [
     <main class="main-content" id="main-content">
         <?php 
         // Load default page or requested page
-        $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard/dashboard';
+        $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard/meinDashboard';
         include "pages/{$page}.php"; 
         ?>
     </main>
