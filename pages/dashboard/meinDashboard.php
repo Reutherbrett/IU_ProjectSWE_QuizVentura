@@ -24,22 +24,24 @@ $top_scores = [
     <p>Setzen Sie fort, wo Sie aufgehört haben</p>
 </div>
 
-<h3 class="section-title">Lieblings-Quizzes</h3>
+<h3>Lieblings-Quizzes</h3>
 <div class="page-grid">
     <?php foreach ($favorite_quizzes as $quiz): ?>
         <div class="card text-center">
-            <span style="font-size: 48px;"><?php echo $quiz['icon']; ?></span>
+            <span style="font-size: 48px; padding-bottom: 8px; padding-right: 8px"><?php echo $quiz['icon']; ?></span>
             <h4 class="mt-10"><?php echo htmlspecialchars($quiz['name']); ?></h4>
         </div>
     <?php endforeach; ?>
 </div>
 
+<h3 class="section-title">Deine besten Ergebnisse</h3>
+<div class="page-section">
 <div class="page-list">
-    <h3 class="section-title">Ihre besten Ergebnisse</h3>
     <?php foreach ($top_scores as $index => $score): ?>
         <div class="list-item">
             <span><?php echo ($index + 1) . '. ' . htmlspecialchars($score['name']); ?></span>
             <span class="text-primary"><?php echo htmlspecialchars($score['score']); ?></span>
         </div>
     <?php endforeach; ?>
+</div>
 </div>
