@@ -9,14 +9,14 @@ html, body {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    background-color: #f7f7f7;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background-color: #f8f8f8;
 
 }
 
 .app-container {
   background-color: #6200EA;
-  color: #f7f7f7;
+  color: #f8f8f8;
   width: 100vw;
   height: 50vh; /* ganze Bildschirmhöhe */
   display: flex;
@@ -42,7 +42,7 @@ h2 {
     font-size: 3.2rem;
     font-family: "Alkatra", system-ui;
     font-weight: 700;
-    color: #f7f7f7;
+    color: #f8f8f8;
     margin-bottom: 10px;
     margin: 0;
 }
@@ -51,7 +51,7 @@ h3 {
     font-size: 2.0rem;
     font-family: "Alkatra", system-ui;
     font-weight: 700;
-    color: #f7f7f7;
+    color: #f8f8f8;
     margin-bottom: 10px;
     margin: 0;
 }
@@ -89,7 +89,7 @@ h4 {
 
 .login-button {
   background-color: #00bcd4; /* A bright cyan-blue */
-  color: #f7f7f7;            /* White text */
+  color: #f8f8f8;            /* White text */
   padding: 12px 40px;         /* Adjust padding to control button size */
   border: 2px solid #00bcd4;
   border-radius: 25px;        /* Highly rounded corners (adjust as needed) */

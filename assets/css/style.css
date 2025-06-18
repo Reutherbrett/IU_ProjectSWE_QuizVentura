@@ -15,14 +15,14 @@
        #F26419 - Orange (Pantone) */
     
     /* Text Colors */
-    --text-primary: #f7f7f7;
+    --text-primary: #f8f8f8;
     --text-secondary: #333333;
     --text-muted: #666666;
     --text-light: #888888;
     
     /* Background Colors */
-    --background: #f7f7f7;
-    --card-background: #f7f7f7;
+    --background: #f8f8f8;
+    --card-background: #f8f8f8;
     --secondary-menu-bg: rgba(242, 100, 25, 0.9);
     
     /* Border & States */
@@ -37,7 +37,7 @@
     --spacing-md: 15px;
     --spacing-lg: 20px;
     --spacing-xl: 30px;
-    --spacing-xxl: 40px;
+    --spacing-xxl: 45px;
     
     /* Shadows */
     --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -57,7 +57,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     background-color: var(--background);
     color: var(--text-secondary);
 }
@@ -154,7 +154,7 @@ ul li {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
 }
 
 /* ========================================
@@ -197,7 +197,7 @@ ul li {
 }
 
 .nav-item {
-    padding: 12px var(--spacing-lg);
+    padding: 8px var(--spacing-lg);
     cursor: pointer;
     font-weight: 500;
     transition: background-color var(--transition-fast);
@@ -225,11 +225,16 @@ ul li {
     transition: background-color var(--transition-medium);
 }
 
+.secondary-sidebar h1 {
+margin-top: 7px;
+margin-bottom: 30px;
+}
+
 .profile-card {
     background: rgba(255, 255, 255, 0.15);
     border: 2px solid rgba(255, 255, 255, 0.45);
     border-radius: var(--border-radius-large);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     margin: var(--spacing-xs) var(--spacing-xs) 18px;
     text-align: center;
     backdrop-filter: blur(10px);
@@ -244,13 +249,16 @@ ul li {
 
 /* Profile card text styling */
 .profile-card h4 {
+    font-weight: 500;
     color: var(--text-primary);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: 0;
+    line-height: 1.4;
 }
 
 .profile-card p {
     color: var(--text-primary);
     font-size: 14px;
+    line-height: 1.4;;
     margin-top: var(--spacing-sm);
     margin-bottom: 0;
 }
@@ -327,7 +335,7 @@ ul li {
 }
 
 .card:hover {
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
     box-shadow: var(--shadow-heavy);
 }
 
