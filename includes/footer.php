@@ -7,8 +7,11 @@
 
     </div> <!-- Close .app-container -->
 
-    <!-- JavaScript Scripts -->
-    <script src="assets/js/scripts.js"></script>
+    <!-- Core JavaScript Modules (load in dependency order) -->
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/ajax.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/app.js"></script>
     
     <?php if (isset($additional_scripts) && is_array($additional_scripts)): ?>
         <?php foreach ($additional_scripts as $script): ?>

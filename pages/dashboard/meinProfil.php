@@ -6,37 +6,24 @@
 
 <!-- Profile page content -->
 <div class="page-header">
-    <h2>My Profile</h2>
-    <p>Manage your personal information</p>
+    <h2>Mein Profil</h2>
+    <p>Verwalte deine persönlichen Informationen.</p>
 </div>
 
-<div class="page-grid">
-    <div class="card">
-        <div style="text-align: center;">
-            <h3>Personal Information</h3>
-            <p>Configure your data</p>
-        </div>
+<h3 class="section-title">Profil-Einstellungen</h3>
+<div class="page-section">
+<div class="page-list">
+    <div class="list-item">
+        <span>Benutzername</span>
+        <button class="btn btn-secondary btn-small">Bearbeiten</button>
     </div>
-    <div class="card">
-        <div style="text-align: center;">
-            <h3>Statistics</h3>
-            <p>View your performance</p>
-        </div>
+    <div class="list-item">
+        <span>E-Mail</span>
+        <button class="btn btn-secondary btn-small">Bearbeiten</button>
+    </div>
+    <div class="list-item">
+        <span>Passwort</span>
+        <button class="btn btn-secondary btn-small">Bearbeiten</button>
     </div>
 </div>
-
-<div class="quiz-list">
-    <h3 style="margin-bottom: 20px;">Profile Settings</h3>
-    <div class="quiz-item">
-        <span>Username</span>
-        <span>Edit</span>
-    </div>
-    <div class="quiz-item">
-        <span>Email</span>
-        <span>Edit</span>
-    </div>
-    <div class="quiz-item">
-        <span>Password</span>
-        <span>Change</span>
-    </div>
 </div>
