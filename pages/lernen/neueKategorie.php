@@ -22,10 +22,10 @@ if ($_POST && isset($_POST['save_category'])) {
 
 <form method="POST" style="max-width: 800px;">
     <!-- Category Details -->
-    <div class="card mb-30">
-        <div style="width: 100%;">
-            <h3 class="section-title">Kategorie-Details</h3>
-            
+    <h3>Kategorie-Details</h3>
+    <div class="page-section">
+    <div class="card card-display">
+        <div style="width: 100%;">            
             <div class="form-group">
                 <label class="form-label">Kategorie-Name:</label>
                 <input type="text" name="category_name" required class="form-input"
@@ -39,12 +39,14 @@ if ($_POST && isset($_POST['save_category'])) {
             </div>
         </div>
     </div>
+    </div>
 
     <!-- Questions Section -->
-    <div class="card mb-30">
+    <h3>Fragen</h3>
+    <div class="page-section">
+    <div class="card card-display mb-30">
         <div style="width: 100%;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h3 class="section-title">Fragen</h3>
                 <button type="button" onclick="addQuestion()" class="btn btn-primary btn-small">
                     Frage hinzufügen
                 </button>
@@ -90,10 +92,11 @@ if ($_POST && isset($_POST['save_category'])) {
             </div>
         </div>
     </div>
+    </div>
 
     <!-- Save Button -->
     <div class="text-center mt-30">
-        <button type="button" onclick="window.location.href='alleKategorien.php'" class="btn btn-neutral" style="margin-right: 15px;">
+        <button type="button" onclick="window.location.href='alleKategorien.php'" class="btn btn-secondary" style="margin-right: 15px;">
             Abbrechen
         </button>
         <button type="submit" name="save_category" class="btn btn-primary">
