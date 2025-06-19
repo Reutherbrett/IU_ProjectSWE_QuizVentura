@@ -23,6 +23,7 @@ function changeTheme(color) {
     document.documentElement.style.setProperty('--primary-color', color);
     document.documentElement.style.setProperty('--primary-hover', hoverColor);
     document.documentElement.style.setProperty('--secondary-menu-bg', rgba);
+    
 }
 
 function hexToRgba(hex, opacity) {
@@ -73,6 +74,7 @@ function switchContent(contentId) {
 function handleMenuClick(color, content) {
     changeTheme(color);
     switchContent(content);
+    
     closeMenu();
 }
 
