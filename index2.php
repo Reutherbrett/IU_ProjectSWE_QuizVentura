@@ -1,34 +1,33 @@
 <?php
 /**
- * QuizVentura Dashboard main page
- * File that gathers all the components
+ * QuizVentura main page
  */
 
-// Start session if needed
-// session_start();
+$page_title = "QuizVentura";
 
-// Define variables for the header
-$page_title = "QuizVentura Dashboard";
-
-// Additional scripts (if needed)
+// Only include the simple navigation script
 $additional_scripts = [
-    // 'assets/js/dashboard.js'
+    'assets/js/simple-nav.js'  // Your new simple file
 ];
 ?>
 
 <?php include 'includes/header.php'; ?>
 
+<!-- Mobile Header -->
+<header class="mobile-header">
+    <span>QuizVentura</span>
+    <button class="menu-toggle">☰</button>
+</header>
+
+<!-- Menu Backdrop -->
+<div class="menu-backdrop"></div>
+
 <div class="app-container">
     <?php include 'includes/menu.php'; ?>
     <?php include 'includes/sidebar.php'; ?>
     
-    <!-- Add main content wrapper -->
     <main class="main-content" id="main-content">
-        <?php 
-        // Load default page or requested page
-        $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard/meinDashboard';
-        include "pages/{$page}.php"; 
-        ?>
+        <!-- Default content will be loaded by JavaScript -->
     </main>
 </div>
 

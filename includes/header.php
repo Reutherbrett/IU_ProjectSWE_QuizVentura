@@ -27,8 +27,8 @@
 <body>
     <!-- Mobile Header -->
     <header class="mobile-header">
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle">☰</button>
     </header>
 
-    <!-- Menu Backdrop -->
-    <div class="menu-backdrop" onclick="toggleMenu()"></div>
+    <!-- Menu Backdrop (add this too) -->
+    <div class="menu-backdrop"></div>
