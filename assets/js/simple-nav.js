@@ -23,6 +23,7 @@ function changeTheme(color) {
     document.documentElement.style.setProperty('--primary-color', color);
     document.documentElement.style.setProperty('--primary-hover', hoverColor);
     document.documentElement.style.setProperty('--secondary-menu-bg', rgba);
+    
 }
 
 function hexToRgba(hex, opacity) {
@@ -73,6 +74,7 @@ function switchContent(contentId) {
 function handleMenuClick(color, content) {
     changeTheme(color);
     switchContent(content);
+    
     closeMenu();
 }
 
@@ -104,6 +106,16 @@ function loadPage(url) {
     });
 }
 
+// === TOUCH SUPPORT ===
+function addTouchSupport(element, handler) {
+    // Add both click and touch events
+    element.addEventListener('click', handler);
+    element.addEventListener('touchend', (e) => {
+        e.preventDefault(); // Prevent double-firing
+        handler(e);
+    });
+}
+
 // === INITIALIZATION ===
 function init() {
     // Set default theme and content
@@ -113,21 +125,32 @@ function init() {
     // Load default page
     loadPage('pages/dashboard/meinDashboard.php');
     
-    // Setup menu toggle
+    // Setup menu toggle with touch support
     const menuToggle = document.querySelector('.menu-toggle');
     if (menuToggle) {
-        menuToggle.addEventListener('click', toggleMenu);
+        addTouchSupport(menuToggle, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+        });
     }
     
-    // Setup backdrop
+    // Setup backdrop with touch support
     const backdrop = document.querySelector('.menu-backdrop');
     if (backdrop) {
-        backdrop.addEventListener('click', closeMenu);
+        addTouchSupport(backdrop, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeMenu();
+        });
     }
     
-    // Setup navigation items
+    // Setup navigation items with touch support
     document.querySelectorAll('.nav-item').forEach(item => {
-        item.addEventListener('click', (e) => {
+        addTouchSupport(item, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
             const color = e.currentTarget.dataset.color;
             const content = e.currentTarget.dataset.content;
             if (color && content) {
@@ -136,9 +159,12 @@ function init() {
         });
     });
     
-    // Setup profile cards
+    // Setup profile cards with touch support
     document.querySelectorAll('.profile-card').forEach(card => {
-        card.addEventListener('click', (e) => {
+        addTouchSupport(card, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
             const pageUrl = e.currentTarget.dataset.page;
             if (pageUrl) {
                 loadPage(pageUrl);
@@ -153,6 +179,16 @@ function init() {
             closeMenu();
         }
     });
+    
+    // Prevent zoom on double-tap (mobile optimization)
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', (e) => {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            e.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, { passive: false });
 }
 
 // Start when DOM is ready

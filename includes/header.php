@@ -30,5 +30,5 @@
     <button class="menu-toggle">☰</button>
     </header>
 
-    <!-- Menu Backdrop (add this too) -->
+    <!-- Menu Backdrop -->
     <div class="menu-backdrop"></div>
