@@ -7,20 +7,11 @@ $page_title = "QuizVentura";
 
 // Only include the simple navigation script
 $additional_scripts = [
-    'assets/js/simple-nav.js'  // Your new simple file
+    'assets/js/simple-nav.js'
 ];
 ?>
 
 <?php include 'includes/header.php'; ?>
-
-<!-- Mobile Header -->
-<header class="mobile-header">
-    <span>QuizVentura</span>
-    <button class="menu-toggle">☰</button>
-</header>
-
-<!-- Menu Backdrop -->
-<div class="menu-backdrop"></div>
 
 <div class="app-container">
     <?php include 'includes/menu.php'; ?>
