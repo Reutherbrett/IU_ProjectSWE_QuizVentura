@@ -6,13 +6,8 @@
 ?>
 
     </div> <!-- Close .app-container -->
+    <script src="assets/js/simple-nav.js"></script>
 
-    <!-- Core JavaScript Modules (load in dependency order) -->
-    <script src="assets/js/theme.js"></script>
-    <script src="assets/js/ajax.js"></script>
-    <script src="assets/js/menu.js"></script>
-    <script src="assets/js/app.js"></script>
-    
     <?php if (isset($additional_scripts) && is_array($additional_scripts)): ?>
         <?php foreach ($additional_scripts as $script): ?>
             <script src="<?php echo htmlspecialchars($script); ?>"></script>
