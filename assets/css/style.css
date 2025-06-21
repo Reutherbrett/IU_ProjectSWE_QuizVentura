@@ -584,24 +584,14 @@ ul li {
 }
 
 /* Score color classes */
-.score-excellent {
-    background: rgba(0, 188, 212, 0.15); /* Moonstone with transparency */
-    color: #006064; /* Darker Moonstone */
-}
-
-.score-great {
+.score-excellent-indigo, .score-great-indigo, .score-good-indigo, .score-normal-indigo {
     background: rgba(98, 0, 234, 0.15); /* Electric Indigo with transparency */
     color: #4527A0; /* Darker Electric Indigo */
 }
 
-.score-good {
-    background: rgba(242, 100, 25, 0.12); /* Orange (Pantone) with transparency */
-    color: #D14F0F; /* Darker Orange (Pantone) */
-}
-
-.score-normal {
-    background: rgba(255, 82, 82, 0.15); /* Bittersweet with transparency */
-    color: #C62828; /* Darker Bittersweet */
+.score-excellent-orange, .score-great-orange, .score-good-orange, .score-normal-orange {
+    background: rgba(242, 100, 25, 0.12); /* Orange with transparency */
+    color: #D14F0F; /* Darker Orange */
 }
 
 /* Statistics */

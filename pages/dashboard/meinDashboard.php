@@ -29,10 +29,10 @@ function getTrophyIcon($rank) {
 }
 
 function getScoreClass($score) {
-    if ($score >= 95) return 'score-excellent';
-    if ($score >= 90) return 'score-great';
-    if ($score >= 85) return 'score-good';
-    return 'score-normal';
+    if ($score >= 95) return 'score-excellent-orange';
+    if ($score >= 90) return 'score-great-orange';
+    if ($score >= 85) return 'score-good-orange';
+    return 'score-normal-orange';
 }
 ?>
 

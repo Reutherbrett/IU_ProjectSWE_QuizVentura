@@ -24,7 +24,7 @@ if ($_POST && isset($_POST['save_category'])) {
     <!-- Category Details Section -->
     <div class="page-section">
         <h3>Kategorie-Details</h3>
-        <div class="card card-display card-vertical">
+        <div class="question-block">
             <div class="form-group">
                 <label class="form-label">Kategorie-Name</label>
                 <span class="form-help">Wähle einen aussagekräftigen Namen für deine Kategorie</span>
@@ -34,9 +34,89 @@ if ($_POST && isset($_POST['save_category'])) {
 
             <div class="form-group">
                 <label class="form-label">Symbol (Emoji)</label>
-                <span class="form-help">Ein passendes Emoji für deine Kategorie (z.B. 📚 📊 ⚽ 🎵)</span>
-                <input type="text" id="category_icon" name="category_icon" required maxlength="2"
-                    class="form-input icon-input" placeholder="📚">
+                <span class="form-help">Wähle ein passendes Emoji für deine Kategorie</span>
+                <div class="emoji-grid">
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="📚" required id="emoji_1">
+                        <label for="emoji_1" class="emoji-label">📚</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="📊" required id="emoji_2">
+                        <label for="emoji_2" class="emoji-label">📊</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="⚽" required id="emoji_3">
+                        <label for="emoji_3" class="emoji-label">⚽</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🎵" required id="emoji_4">
+                        <label for="emoji_4" class="emoji-label">🎵</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🎨" required id="emoji_5">
+                        <label for="emoji_5" class="emoji-label">🎨</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🔬" required id="emoji_6">
+                        <label for="emoji_6" class="emoji-label">🔬</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🌍" required id="emoji_7">
+                        <label for="emoji_7" class="emoji-label">🌍</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="💻" required id="emoji_8">
+                        <label for="emoji_8" class="emoji-label">💻</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🍳" required id="emoji_9">
+                        <label for="emoji_9" class="emoji-label">🍳</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🎭" required id="emoji_10">
+                        <label for="emoji_10" class="emoji-label">🎭</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🏛️" required id="emoji_11">
+                        <label for="emoji_11" class="emoji-label">🏛️</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🎯" required id="emoji_12">
+                        <label for="emoji_12" class="emoji-label">🎯</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🏆" required id="emoji_13">
+                        <label for="emoji_13" class="emoji-label">🏆</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🚗" required id="emoji_14">
+                        <label for="emoji_14" class="emoji-label">🚗</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🎪" required id="emoji_15">
+                        <label for="emoji_15" class="emoji-label">🎪</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="📱" required id="emoji_16">
+                        <label for="emoji_16" class="emoji-label">📱</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🎮" required id="emoji_17">
+                        <label for="emoji_17" class="emoji-label">🎮</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="📐" required id="emoji_18">
+                        <label for="emoji_18" class="emoji-label">📐</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🎬" required id="emoji_19">
+                        <label for="emoji_19" class="emoji-label">🎬</label>
+                    </div>
+                    <div class="emoji-option">
+                        <input type="radio" name="category_icon" value="🌟" required id="emoji_20">
+                        <label for="emoji_20" class="emoji-label">🌟</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -235,6 +315,15 @@ if ($_POST && isset($_POST['save_category'])) {
         const form = document.querySelector('.category-form');
 
         form.addEventListener('submit', function (e) {
+            // Check if emoji is selected
+            const emojiRadios = document.querySelectorAll('input[name="category_icon"]');
+            const isEmojiSelected = Array.from(emojiRadios).some(radio => radio.checked);
+            if (!isEmojiSelected) {
+                e.preventDefault();
+                alert('Bitte wählen Sie ein Emoji für Ihre Kategorie aus.');
+                return false;
+            }
+
             const questions = document.querySelectorAll('.question-block');
 
             if (questions.length < 3) {
@@ -271,13 +360,65 @@ if ($_POST && isset($_POST['save_category'])) {
     /* Page-specific styles for neueKategorie.php */
 
     .category-form {
-        margin: 0 auto;
+        width: 100%;
+        max-width: none;
     }
 
-    .icon-input {
-        width: 80px !important;
-        text-align: center;
-        font-size: 20px;
+    /* Form inputs - ensure full width */
+    .category-form .form-input {
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+    }
+
+    /* Emoji selection grid */
+    .emoji-grid {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: var(--spacing-xs);
+        margin-top: var(--spacing-xs);
+        width: 100%;
+    }
+
+    .emoji-option {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .emoji-label {
+        background: var(--background);
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        padding: var(--spacing-sm);
+        font-size: 24px;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        width: 100%;
+    }
+
+    .emoji-label:hover {
+        border-color: var(--primary-color);
+        background: var(--background-hover);
+        transform: translateY(-2px);
+    }
+
+    .emoji-option input[type="radio"]:checked + .emoji-label {
+        border-color: var(--primary-color);
+        background: var(--primary-color);
+        color: var(--text-primary);
+        transform: scale(1.05);
+    }
+
+    .emoji-option input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
     }
 
     .answer-grid {
@@ -347,6 +488,27 @@ if ($_POST && isset($_POST['save_category'])) {
 
     /* Mobile responsiveness */
     @media (max-width: 768px) {
+        .category-form {
+            width: 100%;
+            padding: 0;
+        }
+
+        .category-form .form-input {
+            width: 100%;
+            max-width: none;
+        }
+
+        .emoji-grid {
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--spacing-xs);
+        }
+
+        .emoji-label {
+            padding: var(--spacing-xs);
+            font-size: 20px;
+            min-height: 40px;
+        }
+
         .answer-option {
             flex-direction: column;
             align-items: flex-start;
@@ -359,22 +521,35 @@ if ($_POST && isset($_POST['save_category'])) {
 
         .form-actions {
             flex-direction: column;
+            gap: var(--spacing-md);
         }
 
         .form-actions .btn {
             width: 100%;
         }
-
-        .d-flex.justify-between {
-            flex-direction: column;
-            gap: var(--spacing-md);
-        }
-
-        .d-flex.justify-between .btn {
-            align-self: flex-start;
-        }
     }
 
+    @media (max-width: 480px) {
+        .category-form {
+            width: 100%;
+            padding: 0;
+        }
+
+        .category-form .form-input {
+            width: 100%;
+            max-width: none;
+        }
+
+        .emoji-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .emoji-label {
+            font-size: 18px;
+            padding: var(--spacing-xs);
+            min-height: 35px;
+        }
+    }
 
     /* Enhanced visual feedback */
     .question-block.error {
