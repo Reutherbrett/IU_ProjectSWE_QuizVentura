@@ -34,10 +34,10 @@ function getTrophyIcon($rank) {
 
 // Function to get score color class
 function getScoreClass($score) {
-    if ($score >= 95) return 'score-excellent';
-    if ($score >= 90) return 'score-great';
-    if ($score >= 85) return 'score-good';
-    return 'score-normal';
+    if ($score >= 95) return 'score-excellent-indigo';
+    if ($score >= 90) return 'score-great-indigo';
+    if ($score >= 85) return 'score-good-indigo';
+    return 'score-normal-indigo';
 }
 
 // Function to format date
