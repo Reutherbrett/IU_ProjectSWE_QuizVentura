@@ -39,8 +39,10 @@ $all_quizzes = [
 </div>
 
 <!-- Add New Category Button -->
-<div class="text-center mt-40">
-    <button onclick="loadPage('pages/lernen/neueKategorie.php')" class="btn btn-primary">
-        Neue Kategorie erstellen
-    </button>
+ <div class="page-section"></div>
+    <div class="text-center mt-40">
+        <button onclick="loadPage('pages/lernen/neueKategorie.php')" class="btn btn-primary">
+            Neue Kategorie erstellen
+        </button>
+    </div>
 </div>
