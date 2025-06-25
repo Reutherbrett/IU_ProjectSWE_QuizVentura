@@ -91,7 +91,7 @@ $category = [
 <!-- Action Buttons -->
 <div class="form-actions">
     <button type="button" onclick="window.location.href='alleKategorien.php'" class="btn btn-secondary">
-        Zurück zur Übersicht
+        Zurück zu Kategorien
     </button>
     <button type="button" onclick="window.location.href='bearbeiteKategorie.php?id=<?= $category_id ?>'" class="btn btn-primary">
         Kategorie bearbeiten
@@ -125,14 +125,11 @@ $category = [
 .question-text {
     margin-bottom: var(--spacing-lg);
     padding: var(--spacing-md);
-    background: rgba(242, 100, 25, 0.05);
-    border-left: 4px solid var(--primary-color);
-    border-radius: var(--border-radius-small);
 }
 
 .question-text p {
     margin-bottom: 0;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .answer-view-grid {
@@ -152,13 +149,12 @@ $category = [
 }
 
 .answer-view-option.correct-answer {
-    background: rgba(40, 167, 69, 0.1);
-    border-color: #28a745;
-    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.1);
+    background: rgba(25, 217, 242, 0.12);
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(25, 217, 242, 0.12);
 }
 
 .option-label-view {
-    font-weight: 600;
     color: var(--text-secondary);
     background: var(--background);
     border: 2px solid var(--border-color);
@@ -170,12 +166,16 @@ $category = [
     justify-content: center;
     font-size: 14px;
     flex-shrink: 0;
+    font-family: 'Alkatra';
+    font-weight: 700;
 }
 
 .correct-answer .option-label-view {
-    background: #28a745;
+    background: var(--primary-color);
     color: white;
-    border-color: #28a745;
+    border-color: var(--primary-color);
+    font-family: 'Alkatra';
+    font-weight: 700;
 }
 
 .answer-view-text {
@@ -186,8 +186,8 @@ $category = [
 }
 
 .correct-indicator {
-    color: #28a745;
-    font-weight: 600;
+    color: var(--primary-color);
+    font-weight: 550;
     font-size: 14px;
     margin-left: var(--spacing-md);
 }

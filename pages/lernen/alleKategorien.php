@@ -31,7 +31,7 @@ $all_quizzes = [
 <h3>Deine Lieblings-Quizzes</h3>
 <div class="page-grid">
     <?php foreach ($favorite_quizzes as $quiz): ?>
-    <div class="card card-button text-center" onclick="handleClick()">
+    <div class="card card-button text-center" onclick="loadPage('pages/lernen/kategorieAnsicht.php')">
         <span class="quiz-card-icon"><?php echo $quiz['icon']; ?></span>
         <span class="quiz-card-title"><?php echo htmlspecialchars($quiz['name']); ?></span>
         <span class="quiz-card-info"><?php echo $quiz['questions_count']; ?> Fragen</span>

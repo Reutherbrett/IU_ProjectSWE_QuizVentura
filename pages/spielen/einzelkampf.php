@@ -24,7 +24,7 @@ $all_quizzes = [
 
 <div class="page-header">
     <h2>Einzelkampf</h2>
-    <p>Kategorie wählen</p>
+    <p>Wähle eine Kategorie.</p>
 </div>
 
 <div class="page-grid">
