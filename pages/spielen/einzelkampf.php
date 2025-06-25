@@ -29,17 +29,10 @@ $all_quizzes = [
 
 <div class="page-grid">
     <?php foreach ($all_quizzes as $quiz): ?>
-    <div class="card card-button text-center" onclick="handleClick()">
-        <span onclick="loadPage('pages/spielen/einzelspieler_spielen.php')" class="quiz-card-icon"><?php echo $quiz['icon']; ?></span>
-        <span onclick="loadPage('pages/spielen/einzelspieler_spielen.php')" class="quiz-card-title"><?php echo htmlspecialchars($quiz['name']); ?></span>
-        <span onclick="loadPage('pages/spielen/einzelspieler_spielen.php')" class="quiz-card-info"><?php echo $quiz['questions_count']; ?> Fragen</span>
+    <div class="card card-button text-center" onclick="loadPage('pages/spielen/einzelspieler_spielen.php')">
+        <span class="quiz-card-icon"><?php echo $quiz['icon']; ?></span>
+        <span class="quiz-card-title"><?php echo htmlspecialchars($quiz['name']); ?></span>
+        <span class="quiz-card-info"><?php echo $quiz['questions_count']; ?> Fragen</span>
     </div>
     <?php endforeach; ?>
-</div>
-
-<!-- Add New Category Button -->
-<div class="text-center mt-40">
-    <button onclick="loadPage('pages/lernen/neueKategorie.php')" class="btn btn-primary">
-        Neue Kategorie erstellen
-    </button>
 </div>

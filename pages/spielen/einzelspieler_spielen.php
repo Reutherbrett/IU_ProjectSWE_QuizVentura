@@ -17,10 +17,12 @@ $all_answers = [
 ?>
 
 
+<div class="page-header">
+    <h2>Quiz</h2>
+</div>
 
    <div>
         <div class="question-box">
-            <h1>Quiz</h1>
             <div class="card card-button text-center">
                 <h3>Who came first?<br>The chicken or the egg?</h3>
                 <p>Question 1/10</p>
@@ -44,7 +46,6 @@ $all_answers = [
         <div class="quiz-sidebar">
             <div class="card card-vertical mb-30">
              <h4>Punkte: 0/10</h4>
-             <h4>Frage: 1/10</h4>
              <h4>Zeit: 30s</h4>
                 </div>
           </div>
