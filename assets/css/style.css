@@ -1146,7 +1146,7 @@ ul li {
         order: 2; /* Ensure it comes second */
         min-height: auto; /* Let content determine height */
         overflow-y: visible; /* Normal flow on mobile */
-    
+    }
 
     h2 {
         font-size: 42px;
