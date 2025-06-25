@@ -166,8 +166,7 @@ $category = [
     justify-content: center;
     font-size: 14px;
     flex-shrink: 0;
-    font-family: 'Alkatra';
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .correct-answer .option-label-view {
