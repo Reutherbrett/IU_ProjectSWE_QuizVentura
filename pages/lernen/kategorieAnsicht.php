@@ -174,8 +174,6 @@ $category = [
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
-    font-family: 'Alkatra';
-    font-weight: 700;
 }
 
 .answer-view-text {
