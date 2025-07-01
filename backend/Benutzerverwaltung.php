@@ -1,5 +1,4 @@
 <?php
-<?php
 require_once 'db_connect.php';
 
 // Registrierung eines Nutzers
@@ -83,6 +82,27 @@ function getUserTotalScore($userId) {
     $result = $stmt->fetch();
     return $result ? $result['Score_total'] : null;
 }
+
+// Passwort ändern
+function updateUserPassword($userId, $oldPassword, $newPassword) {
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT Password_Hash FROM Benutzer WHERE Nutzer_ID = ?");
+    $stmt->execute([$userId]);
+    $user = $stmt->fetch();
+
+    if (!$user || !password_verify($oldPassword, $user['Password_Hash'])) {
+        return ['success' => false, 'message' => 'Altes Passwort ist falsch'];
+    }
+
+    $newHash = password_hash($newPassword, PASSWORD_DEFAULT);
+    $stmt = $pdo->prepare("UPDATE Benutzer SET Password_Hash = ? WHERE Nutzer_ID = ?");
+    if ($stmt->execute([$newHash, $userId])) {
+        return ['success' => true, 'message' => 'Passwort erfolgreich geändert'];
+    } else {
+        return ['success' => false, 'message' => 'Fehler beim Ändern des Passworts'];
+    }
+}
+
 
 // Beispiel-Aufrufe (zum Testen):
 // $reg = registerUser('MaxMustermann', 'max@example.com', 'geheimesPasswort');
