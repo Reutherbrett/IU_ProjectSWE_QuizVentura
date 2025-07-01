@@ -3,6 +3,16 @@
  * QuizVentura main page
  */
 
+// Start session and check if user is logged in
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    // User is not logged in, redirect to login page
+    header('Location: index.php');
+    exit();
+}
+
 $page_title = "QuizVentura";
 
 // Only include the simple navigation script
