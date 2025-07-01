@@ -2,9 +2,9 @@
 // Server Datenbankverbindung mit PDO
 
 $host = 'localhost';               // Via UNIX socket
-$db   = 'swe_quizventura';             // Your database name
-$user = 'swe_jjlp';                // Your MariaDB username
-$pass = '2gw%J3m65';           // Your MariaDB password
+$db   = 'swe_quizventura';    // Name der Datenbank
+$user = 'swe_jllp';                // MariaDB username
+$pass = '2gw%J3m65';           // MariaDB password
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
