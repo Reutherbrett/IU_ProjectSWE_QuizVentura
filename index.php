@@ -5,7 +5,7 @@ require_once 'backend/Benutzerverwaltung.php';
 $loginMessage = '';
 
 // Handle login form submission
-if ($_POST['email'] && $_POST['password']) {
+if ($_POST && isset($_POST['email']) && isset($_POST['password'])) {
     $result = loginUser($_POST['email'], $_POST['password']);
     
     if ($result['success']) {
