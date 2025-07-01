@@ -28,7 +28,7 @@ if ($_POST['email'] && $_POST['password']) {
     <link rel="stylesheet" href="assets/css/styleIndex.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2/family=Alkatra:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
    <div class="app-container">

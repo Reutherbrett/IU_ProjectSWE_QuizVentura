@@ -10,7 +10,7 @@ $menu_items = [
     ['label' => 'Dashboard', 'url' => 'pages/dashboard/meinDashboard.php', 'color' => '#F26419', 'content' => 'dashboard'],
     ['label' => 'Lernen', 'url' => 'pages/lernen/alleKategorien.php', 'color' => '#00BCD4', 'content' => 'lernen'],
     ['label' => 'Spielen', 'url' => 'pages/spielen/leaderboard.php', 'color' => '#6200EA', 'content' => 'spielen'],
-    ['label' => 'Abmelden', 'url' => 'abmelden.php', 'color' => '#FF5252', 'content' => 'abmelden']
+    // ['label' => 'Abmelden', 'url' => 'abmelden.php', 'color' => '#FF5252', 'content' => 'abmelden']
 ];
 ?>
 
@@ -28,6 +28,9 @@ $menu_items = [
                     <?php echo $item['label']; ?>
                 </li>
             <?php endforeach; ?>
+            <li class="nav-item" data-color="#FF5252" data-content="abmelden">
+            Abmelden
+            </li>
         </ul>
     </nav>
 </aside>

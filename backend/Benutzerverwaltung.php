@@ -83,6 +83,13 @@ function getUserTotalScore($userId) {
     return $result ? $result['Score_total'] : null;
 }
 
+// Nutzer abmelden
+function logoutUser() {
+    session_start();
+    session_destroy();
+    return ['success' => true, 'message' => 'Erfolgreich abgemeldet'];
+}
+
 // Beispiel-Aufrufe (zum Testen):
 // $reg = registerUser('MaxMustermann', 'max@example.com', 'geheimesPasswort');
 // print_r($reg);

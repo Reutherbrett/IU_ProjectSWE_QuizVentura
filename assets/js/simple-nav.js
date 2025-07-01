@@ -71,7 +71,20 @@ function switchContent(contentId) {
     }
 }
 
+// function handleMenuClick(color, content) {
+//     changeTheme(color);
+//     switchContent(content);
+    
+//     closeMenu();
+// }
+
 function handleMenuClick(color, content) {
+    // Handle logout specially
+    if (content === 'abmelden') {
+        window.location.href = 'backend/Abmelden.php';
+        return;
+    }
+    
     changeTheme(color);
     switchContent(content);
     

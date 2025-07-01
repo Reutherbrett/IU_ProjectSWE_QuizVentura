@@ -1,5 +1,4 @@
 <?php
-<?php
 // Datenbankverbindung mit PDO herstellen
 
 $host = 'localhost';      // Datenbank-Host
