@@ -2,7 +2,7 @@
 // Server Datenbankverbindung mit PDO
 
 $host = 'localhost';               // Via UNIX socket
-$db   = 'quizventura';             // Your database name
+$db   = 'swe_quizventura';             // Your database name
 $user = 'swe_jjlp';                // Your MariaDB username
 $pass = '2gw%J3m65';           // Your MariaDB password
 $charset = 'utf8mb4';
