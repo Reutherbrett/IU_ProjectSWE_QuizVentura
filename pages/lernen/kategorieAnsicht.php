@@ -3,54 +3,19 @@
  * View Category Page - Display all questions of a quiz category
  */
 
-// Get category ID from URL parameter
-$category_id = $_GET['id'] ?? 1;
+require_once '../../backend/Kategorieverwaltung.php';
 
-// Sample data - replace with actual database fetch
-$category = [
-    'id' => $category_id,
-    'name' => 'Geschichte-Quiz',
-    'icon' => '📚',
-    'questions' => [
-        [
-            'id' => 1,
-            'question' => 'Wann wurde die Berliner Mauer gebaut?',
-            'options' => [
-                'A' => '1959',
-                'B' => '1961',
-                'C' => '1963',
-                'D' => '1965'
-            ],
-            'correct' => 'B'
-        ],
-        [
-            'id' => 2,
-            'question' => 'Wer war der erste Bundeskanzler der BRD?',
-            'options' => [
-                'A' => 'Willy Brandt',
-                'B' => 'Ludwig Erhard',
-                'C' => 'Konrad Adenauer',
-                'D' => 'Helmut Schmidt'
-            ],
-            'correct' => 'C'
-        ],
-        [
-            'id' => 3,
-            'question' => 'In welchem Jahr endete der Zweite Weltkrieg?',
-            'options' => [
-                'A' => '1944',
-                'B' => '1945',
-                'C' => '1946',
-                'D' => '1947'
-            ],
-            'correct' => 'B'
-        ]
-    ]
-];
+$category_id = $_GET['id'] ?? 1;
+$category = getCategoryWithQuestions($category_id);
+
+if (!$category) {
+    header('Location: alleKategorien.php');
+    exit;
+}
 ?>
 
 <div class="page-header">
-    <h2><?= htmlspecialchars($category['icon']) ?> <?= htmlspecialchars($category['name']) ?></h2>
+    <h2>📚 <?= htmlspecialchars($category['Kategorie']) ?></h2>
     <p>Übersicht aller Fragen dieser Kategorie mit den korrekten Antworten.</p>
 </div>
 
@@ -65,18 +30,22 @@ $category = [
                 </div>
                 
                 <div class="question-text">
-                    <p><strong><?= htmlspecialchars($question['question']) ?></strong></p>
+                    <p><strong><?= htmlspecialchars($question['Frage_Text']) ?></strong></p>
                 </div>
                 
                 <div class="answer-view-grid">
-                    <?php foreach ($question['options'] as $letter => $option): ?>
-                        <div class="answer-view-option <?= $letter === $question['correct'] ? 'correct-answer' : '' ?>">
+                    <?php 
+                    $letters = ['A', 'B', 'C', 'D'];
+                    foreach ($question['answers'] as $answerIndex => $answer): 
+                        $letter = $letters[$answerIndex] ?? ($answerIndex + 1);
+                    ?>
+                        <div class="answer-view-option <?= $answer['is_correct'] ? 'correct-answer' : '' ?>">
                             <div class="answer-view-label">
                                 <span class="option-label-view"><?= $letter ?></span>
                             </div>
                             <div class="answer-view-text">
-                                <?= htmlspecialchars($option) ?>
-                                <?php if ($letter === $question['correct']): ?>
+                                <?= htmlspecialchars($answer['Antworttext']) ?>
+                                <?php if ($answer['is_correct']): ?>
                                     <span class="correct-indicator">✓ Richtige Antwort</span>
                                 <?php endif; ?>
                             </div>

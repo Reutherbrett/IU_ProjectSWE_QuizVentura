@@ -3,15 +3,45 @@
  * New Category Page - Create new quiz category
  */
 
+ require_once '../../backend/Kategorieverwaltung.php';
+
 // Handle form submission
 if ($_POST && isset($_POST['save_category'])) {
-    // Here you would save to database
     $category_name = $_POST['category_name'] ?? '';
     $category_icon = $_POST['category_icon'] ?? '';
     $questions = $_POST['questions'] ?? [];
-
-    // Sample processing - replace with actual database save
-    echo "<script>alert('Kategorie erfolgreich gespeichert!'); window.location.href='alleKategorien.php';</script>";
+    $created_by = 1; // Replace with actual user ID from session
+    
+    try {
+        // Create category
+        $categoryResult = createCategory($category_name, $created_by, $category_icon);
+        
+        if ($categoryResult['success']) {
+            $kategorie_id = $categoryResult['Kategorie_ID'];
+            
+            // Create questions and answers
+            foreach ($questions as $questionData) {
+                $questionResult = createQuestion($kategorie_id, $questionData['question'], $created_by);
+                
+                if ($questionResult['success']) {
+                    $frage_id = $questionResult['Frage_ID'];
+                    $correct_index = (int)$questionData['correct'];
+                    
+                    // Create answers
+                    foreach ($questionData['options'] as $index => $option_text) {
+                        $is_correct = ($index == $correct_index) ? 1 : 0;
+                        createAnswer($frage_id, $option_text, $is_correct);
+                    }
+                }
+            }
+            
+            echo "<script>alert('Kategorie erfolgreich gespeichert!'); window.location.href='alleKategorien.php';</script>";
+        } else {
+            echo "<script>alert('Fehler: " . $categoryResult['message'] . "');</script>";
+        }
+    } catch (Exception $e) {
+        echo "<script>alert('Fehler beim Speichern: " . $e->getMessage() . "');</script>";
+    }
 }
 ?>
 

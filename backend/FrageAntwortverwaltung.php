@@ -12,6 +12,14 @@ function createQuestion($kategorieId, $frageText, $createdBy) {
     }
 }
 
+// Get single category by ID
+function getCategoryById($kategorieId) {
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT * FROM Kategorie WHERE Kategorie_ID = ?");
+    $stmt->execute([$kategorieId]);
+    return $stmt->fetch();
+}
+
 // Alle Fragen einer Kategorie abrufen
 function getQuestionsByCategory($kategorieId) {
     global $pdo;
@@ -111,6 +119,25 @@ function deleteAnswer($antwortId) {
     } else {
         return ['success' => false, 'message' => 'Fehler beim Löschen'];
     }
+}
+
+// Get category with questions and answers
+function getCategoryWithQuestions($kategorieId) {
+    // Use existing function to get category
+    $category = getCategoryById($kategorieId);
+    
+    if (!$category) return false;
+    
+    // Use existing function to get questions
+    $questions = getQuestionsByCategory($kategorieId);
+    
+    // Use existing function to get answers for each question
+    foreach ($questions as &$question) {
+        $question['answers'] = getAnswersByQuestion($question['Frage_ID']);
+    }
+    
+    $category['questions'] = $questions;
+    return $category;
 }
 
 // Beispiel-Aufrufe (zum Testen):
