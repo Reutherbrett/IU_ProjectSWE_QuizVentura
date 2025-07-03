@@ -2,17 +2,17 @@
 -- Sequential inserts to avoid subquery errors
 
 -- Insert university-level categories
-INSERT INTO Kategorie (Kategorie, Created_by, Field) VALUES 
-('Höhere Mathematik', 1, '∫'),
-('Theoretische Physik', 1, '⚛️'),
-('Organische Chemie', 1, '🧪'),
-('Informatik', 1, '💻'),
-('Philosophie', 1, '🤔'),
-('Mikroökonomie', 1, '📈'),
-('Molekularbiologie', 1, '🧬'),
-('Europäische Geschichte', 1, '🏛️'),
-('Literaturwissenschaft', 1, '📖'),
-('Kognitionspsychologie', 1, '🧠');
+INSERT INTO Kategorie (Kategorie, Created_by, Emoji, QuestionsNumber) VALUES 
+('Höhere Mathematik', 1, '∫', 5),
+('Theoretische Physik', 1, '⚛️', 5),
+('Organische Chemie', 1, '🧪', 5),
+('Informatik', 1, '💻', 5),
+('Philosophie', 1, '🤔', 5),
+('Mikroökonomie', 1, '📈', 5),
+('Molekularbiologie', 1, '🧬', 5),
+('Europäische Geschichte', 1, '🏛️', 5),
+('Literaturwissenschaft', 1, '📖', 5),
+('Kognitionspsychologie', 1, '🧠', 5);
 
 -- Set variables for category IDs
 SET @math_id = LAST_INSERT_ID();

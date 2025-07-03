@@ -14,7 +14,7 @@ CREATE TABLE Kategorie (
     Kategorie      VARCHAR(100) NOT NULL,
     Emoji          VARCHAR(10) NOT NULL,
     Created_by     INT REFERENCES Benutzer(Nutzer_ID) ON DELETE SET NULL,
-    Field          VARCHAR(100)
+    QuestionsNumber INT
 );
 
 -- Tabelle: Fragen

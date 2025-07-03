@@ -2,10 +2,10 @@
 require_once 'db_connect.php';
 
 // Kategorie erstellen
-function createCategory($kategorie, $createdBy, $field = null) {
+function createCategory($kategorie, $createdBy, $emoji = null) {
     global $pdo;
-    $stmt = $pdo->prepare("INSERT INTO Kategorie (Kategorie, Created_by, Field) VALUES (?, ?, ?)");
-    if ($stmt->execute([$kategorie, $createdBy, $field])) {
+    $stmt = $pdo->prepare("INSERT INTO Kategorie (Kategorie, Created_by, Emoji, QuestionsNumber) VALUES (?, ?, ?, 0)");
+    if ($stmt->execute([$kategorie, $createdBy, $emoji])) {
         return ['success' => true, 'message' => 'Kategorie erstellt', 'Kategorie_ID' => $pdo->lastInsertId()];
     } else {
         return ['success' => false, 'message' => 'Fehler beim Erstellen der Kategorie'];
@@ -15,7 +15,7 @@ function createCategory($kategorie, $createdBy, $field = null) {
 // Alle Kategorien abrufen
 function getCategories() {
     global $pdo;
-    $stmt = $pdo->query("SELECT Kategorie_ID, Kategorie, Created_by, Field FROM Kategorie");
+    $stmt = $pdo->query("SELECT Kategorie_ID, Kategorie, Created_by, Emoji, QuestionsNumber FROM Kategorie");
     return $stmt->fetchAll();
 }
 
@@ -28,9 +28,13 @@ function updateCategory($kategorieId, $data) {
         $fields[] = "Kategorie = ?";
         $params[] = $data['Kategorie'];
     }
-    if (isset($data['Field'])) {
-        $fields[] = "Field = ?";
-        $params[] = $data['Field'];
+    if (isset($data['Emoji'])) {
+        $fields[] = "Emoji = ?";
+        $params[] = $data['Emoji'];
+    }
+    if (isset($data['QuestionsNumber'])) {
+        $fields[] = "QuestionsNumber = ?";
+        $params[] = $data['QuestionsNumber'];
     }
     if (empty($fields)) {
         return ['success' => false, 'message' => 'Keine Felder zum Aktualisieren'];

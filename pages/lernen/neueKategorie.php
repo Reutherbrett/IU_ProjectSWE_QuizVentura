@@ -10,6 +10,7 @@ if ($_POST && isset($_POST['save_category'])) {
     $category_name = $_POST['category_name'] ?? '';
     $category_icon = $_POST['category_icon'] ?? '';
     $questions = $_POST['questions'] ?? [];
+    //TODO: Replace with actual user ID from session or authentication system
     $created_by = 1; // Replace with actual user ID from session
     
     try {
@@ -18,6 +19,7 @@ if ($_POST && isset($_POST['save_category'])) {
         
         if ($categoryResult['success']) {
             $kategorie_id = $categoryResult['Kategorie_ID'];
+            $question_count = 0;
             
             // Create questions and answers
             foreach ($questions as $questionData) {
@@ -32,8 +34,12 @@ if ($_POST && isset($_POST['save_category'])) {
                         $is_correct = ($index == $correct_index) ? 1 : 0;
                         createAnswer($frage_id, $option_text, $is_correct);
                     }
+                    $question_count++;
                 }
             }
+            
+            // Update question count
+            updateQuestionCount($kategorie_id, $question_count);
             
             echo "<script>alert('Kategorie erfolgreich gespeichert!'); window.location.href='alleKategorien.php';</script>";
         } else {
@@ -42,6 +48,7 @@ if ($_POST && isset($_POST['save_category'])) {
     } catch (Exception $e) {
         echo "<script>alert('Fehler beim Speichern: " . $e->getMessage() . "');</script>";
     }
+}
 }
 ?>
 
