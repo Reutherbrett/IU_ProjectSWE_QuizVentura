@@ -15,7 +15,7 @@ if (!$category) {
 ?>
 
 <div class="page-header">
-    <h2>📚 <?= htmlspecialchars($category['Kategorie']) ?></h2>
+    <h2><?= htmlspecialchars($category['Emoji'] ?? '📚') ?> <?= htmlspecialchars($category['Kategorie']) ?></h2>
     <p>Übersicht aller Fragen dieser Kategorie mit den korrekten Antworten.</p>
 </div>
 
@@ -59,11 +59,11 @@ if (!$category) {
 
 <!-- Action Buttons -->
 <div class="form-actions">
-    <button type="button" onclick="window.location.href='alleKategorien.php'" class="btn btn-secondary">
-        Zurück zu Kategorien
-    </button>
-    <button type="button" onclick="window.location.href='bearbeiteKategorie.php?id=<?= $category_id ?>'" class="btn btn-primary">
+    <button type="button" onclick="loadPage('pages/lernen/neueKategorie.php?id=<?= $category_id ?>')" class="btn btn-secondary">
         Kategorie bearbeiten
+    </button>
+    <button type="button" onclick="loadPage('pages/lernen/alleKategorien.php')" class="btn btn-primary">
+        Zurück zu Kategorien
     </button>
 </div>
 
@@ -198,4 +198,3 @@ if (!$category) {
         width: 100%;
     }
 }
-</style>

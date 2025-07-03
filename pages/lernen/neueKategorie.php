@@ -3,14 +3,13 @@
  * New Category Page - Create new quiz category
  */
 
- require_once '../../backend/Kategorieverwaltung.php';
+require_once '../../backend/Kategorieverwaltung.php';
 
 // Handle form submission
 if ($_POST && isset($_POST['save_category'])) {
     $category_name = $_POST['category_name'] ?? '';
     $category_icon = $_POST['category_icon'] ?? '';
     $questions = $_POST['questions'] ?? [];
-    //TODO: Replace with actual user ID from session or authentication system
     $created_by = 1; // Replace with actual user ID from session
     
     try {
@@ -49,15 +48,43 @@ if ($_POST && isset($_POST['save_category'])) {
         echo "<script>alert('Fehler beim Speichern: " . $e->getMessage() . "');</script>";
     }
 }
+
+// Handle delete category
+if ($_POST && isset($_POST['delete_category'])) {
+    $category_id = $_POST['category_id'] ?? '';
+    if ($category_id) {
+        $deleteResult = deleteCategory($category_id);
+        if ($deleteResult['success']) {
+            echo "<script>alert('Kategorie erfolgreich gelöscht!'); window.location.href='alleKategorien.php';</script>";
+        } else {
+            echo "<script>alert('Fehler beim Löschen: " . $deleteResult['message'] . "');</script>";
+        }
+    }
+}
+
+// Check if editing existing category
+$editing = false;
+$category = null;
+if (isset($_GET['id'])) {
+    $editing = true;
+    $category = getCategoryWithQuestions($_GET['id']);
+    if (!$category) {
+        header('Location: alleKategorien.php');
+        exit;
+    }
 }
 ?>
 
 <div class="page-header">
-    <h2>Neue Kategorie</h2>
-    <p>Erstelle eine neue Quiz-Kategorie mit eigenen Fragen.</p>
+    <h2><?= $editing ? 'Kategorie bearbeiten' : 'Neue Kategorie' ?></h2>
+    <p><?= $editing ? 'Bearbeite eine bestehende Quiz-Kategorie.' : 'Erstelle eine neue Quiz-Kategorie mit eigenen Fragen.' ?></p>
 </div>
 
 <form method="POST" class="category-form">
+    <?php if ($editing): ?>
+        <input type="hidden" name="category_id" value="<?= $category['Kategorie_ID'] ?>">
+    <?php endif; ?>
+    
     <!-- Category Details Section -->
     <div class="page-section">
         <h3>Kategorie-Details</h3>
@@ -66,93 +93,25 @@ if ($_POST && isset($_POST['save_category'])) {
                 <label class="form-label">Kategorie-Name</label>
                 <span class="form-help">Wähle einen aussagekräftigen Namen für deine Kategorie</span>
                 <input type="text" id="category_name" name="category_name" required class="form-input"
-                    placeholder="z.B. Geschichte-Quiz, Mathematik, Sport">
+                    placeholder="z.B. Geschichte-Quiz, Mathematik, Sport"
+                    value="<?= $editing ? htmlspecialchars($category['Kategorie']) : '' ?>">
             </div>
 
             <div class="form-group">
                 <label class="form-label">Symbol (Emoji)</label>
                 <span class="form-help">Wähle ein passendes Emoji für deine Kategorie</span>
                 <div class="emoji-grid">
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="📚" required id="emoji_1">
-                        <label for="emoji_1" class="emoji-label">📚</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="📊" required id="emoji_2">
-                        <label for="emoji_2" class="emoji-label">📊</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="⚽" required id="emoji_3">
-                        <label for="emoji_3" class="emoji-label">⚽</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🎵" required id="emoji_4">
-                        <label for="emoji_4" class="emoji-label">🎵</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🎨" required id="emoji_5">
-                        <label for="emoji_5" class="emoji-label">🎨</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🔬" required id="emoji_6">
-                        <label for="emoji_6" class="emoji-label">🔬</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🌍" required id="emoji_7">
-                        <label for="emoji_7" class="emoji-label">🌍</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="💻" required id="emoji_8">
-                        <label for="emoji_8" class="emoji-label">💻</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🍳" required id="emoji_9">
-                        <label for="emoji_9" class="emoji-label">🍳</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🎭" required id="emoji_10">
-                        <label for="emoji_10" class="emoji-label">🎭</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🏛️" required id="emoji_11">
-                        <label for="emoji_11" class="emoji-label">🏛️</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🎯" required id="emoji_12">
-                        <label for="emoji_12" class="emoji-label">🎯</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🏆" required id="emoji_13">
-                        <label for="emoji_13" class="emoji-label">🏆</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🚗" required id="emoji_14">
-                        <label for="emoji_14" class="emoji-label">🚗</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🎪" required id="emoji_15">
-                        <label for="emoji_15" class="emoji-label">🎪</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="📱" required id="emoji_16">
-                        <label for="emoji_16" class="emoji-label">📱</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🎮" required id="emoji_17">
-                        <label for="emoji_17" class="emoji-label">🎮</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="📐" required id="emoji_18">
-                        <label for="emoji_18" class="emoji-label">📐</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🎬" required id="emoji_19">
-                        <label for="emoji_19" class="emoji-label">🎬</label>
-                    </div>
-                    <div class="emoji-option">
-                        <input type="radio" name="category_icon" value="🌟" required id="emoji_20">
-                        <label for="emoji_20" class="emoji-label">🌟</label>
-                    </div>
+                    <?php
+                    $emojis = ['📚', '📊', '⚽', '🎵', '🎨', '🔬', '🌍', '💻', '🍳', '🎭', '🏛️', '🎯', '🏆', '🚗', '🎪', '📱', '🎮', '📐', '🎬', '🌟'];
+                    $selected_emoji = $editing ? $category['Emoji'] : '';
+                    
+                    foreach ($emojis as $index => $emoji): ?>
+                        <div class="emoji-option">
+                            <input type="radio" name="category_icon" value="<?= $emoji ?>" required id="emoji_<?= $index + 1 ?>"
+                                <?= ($selected_emoji === $emoji) ? 'checked' : '' ?>>
+                            <label for="emoji_<?= $index + 1 ?>" class="emoji-label"><?= $emoji ?></label>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -163,61 +122,102 @@ if ($_POST && isset($_POST['save_category'])) {
         <h3>Fragen</h3>
 
         <div class="questions-card" id="questions-container">
-            <!-- Initial question -->
-            <div class="question-block" data-question="0">
-                <div class="question-header">
-                    <h4>Frage 1</h4>
-                    <button type="button" onclick="removeQuestion(this)" class="btn btn-remove btn-small">
-                        x
-                    </button>
-                </div>
+            <?php if ($editing && !empty($category['questions'])): ?>
+                <?php foreach ($category['questions'] as $index => $question): ?>
+                    <div class="question-block" data-question="<?= $index ?>">
+                        <div class="question-header">
+                            <h4>Frage <?= $index + 1 ?></h4>
+                            <button type="button" onclick="removeQuestion(this)" class="btn btn-remove btn-small">x</button>
+                        </div>
 
-                <div class="form-group">
-                    <label class="form-label">Fragentext</label>
-                    <input type="text" name="questions[0][question]" required class="form-input"
-                        placeholder="Geben Sie hier Ihre Frage ein...">
-                </div>
+                        <div class="form-group">
+                            <label class="form-label">Fragentext</label>
+                            <input type="text" name="questions[<?= $index ?>][question]" required class="form-input"
+                                placeholder="Geben Sie hier Ihre Frage ein..."
+                                value="<?= htmlspecialchars($question['Frage_Text']) ?>">
+                        </div>
 
-                <div class="form-group">
-                    <label class="form-label">Antwortoptionen</label>
-                    <span class="form-help">Markiere die richtige Antwort durch Auswahl des entsprechenden
-                        Buchstabens</span>
-                    <div class="answer-grid">
-                        <div class="answer-option">
-                            <div class="answer-option-header">
-                                <input type="radio" name="questions[0][correct]" value="0" required id="q0_opt0">
-                                <label for="q0_opt0" class="option-label">A</label>
+                        <div class="form-group">
+                            <label class="form-label">Antwortoptionen</label>
+                            <span class="form-help">Markiere die richtige Antwort durch Auswahl des entsprechenden Buchstabens</span>
+                            <div class="answer-grid">
+                                <?php 
+                                $correct_index = 0;
+                                foreach ($question['answers'] as $i => $answer) {
+                                    if ($answer['is_correct']) $correct_index = $i;
+                                }
+                                ?>
+                                <?php for ($i = 0; $i < 4; $i++): ?>
+                                    <div class="answer-option">
+                                        <div class="answer-option-header">
+                                            <input type="radio" name="questions[<?= $index ?>][correct]" value="<?= $i ?>" required 
+                                                id="q<?= $index ?>_opt<?= $i ?>" <?= ($correct_index === $i) ? 'checked' : '' ?>>
+                                            <label for="q<?= $index ?>_opt<?= $i ?>" class="option-label"><?= chr(65 + $i) ?></label>
+                                        </div>
+                                        <input type="text" name="questions[<?= $index ?>][options][<?= $i ?>]" required
+                                            placeholder="<?= ['Erste', 'Zweite', 'Dritte', 'Vierte'][$i] ?> Antwortoption" 
+                                            class="form-input form-input-small"
+                                            value="<?= isset($question['answers'][$i]) ? htmlspecialchars($question['answers'][$i]['Antworttext']) : '' ?>">
+                                    </div>
+                                <?php endfor; ?>
                             </div>
-                            <input type="text" name="questions[0][options][0]" required
-                                placeholder="Erste Antwortoption" class="form-input form-input-small">
                         </div>
-                        <div class="answer-option">
-                            <div class="answer-option-header">
-                                <input type="radio" name="questions[0][correct]" value="1" required id="q0_opt1">
-                                <label for="q0_opt1" class="option-label">B</label>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <!-- Initial question for new category -->
+                <div class="question-block" data-question="0">
+                    <div class="question-header">
+                        <h4>Frage 1</h4>
+                        <button type="button" onclick="removeQuestion(this)" class="btn btn-remove btn-small">x</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Fragentext</label>
+                        <input type="text" name="questions[0][question]" required class="form-input"
+                            placeholder="Geben Sie hier Ihre Frage ein...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Antwortoptionen</label>
+                        <span class="form-help">Markiere die richtige Antwort durch Auswahl des entsprechenden Buchstabens</span>
+                        <div class="answer-grid">
+                            <div class="answer-option">
+                                <div class="answer-option-header">
+                                    <input type="radio" name="questions[0][correct]" value="0" required id="q0_opt0">
+                                    <label for="q0_opt0" class="option-label">A</label>
+                                </div>
+                                <input type="text" name="questions[0][options][0]" required
+                                    placeholder="Erste Antwortoption" class="form-input form-input-small">
                             </div>
-                            <input type="text" name="questions[0][options][1]" required
-                                placeholder="Zweite Antwortoption" class="form-input form-input-small">
-                        </div>
-                        <div class="answer-option">
-                            <div class="answer-option-header">
-                                <input type="radio" name="questions[0][correct]" value="2" required id="q0_opt2">
-                                <label for="q0_opt2" class="option-label">C</label>
+                            <div class="answer-option">
+                                <div class="answer-option-header">
+                                    <input type="radio" name="questions[0][correct]" value="1" required id="q0_opt1">
+                                    <label for="q0_opt1" class="option-label">B</label>
+                                </div>
+                                <input type="text" name="questions[0][options][1]" required
+                                    placeholder="Zweite Antwortoption" class="form-input form-input-small">
                             </div>
-                            <input type="text" name="questions[0][options][2]" required
-                                placeholder="Dritte Antwortoption" class="form-input form-input-small">
-                        </div>
-                        <div class="answer-option">
-                            <div class="answer-option-header">
-                                <input type="radio" name="questions[0][correct]" value="3" required id="q0_opt3">
-                                <label for="q0_opt3" class="option-label">D</label>
+                            <div class="answer-option">
+                                <div class="answer-option-header">
+                                    <input type="radio" name="questions[0][correct]" value="2" required id="q0_opt2">
+                                    <label for="q0_opt2" class="option-label">C</label>
+                                </div>
+                                <input type="text" name="questions[0][options][2]" required
+                                    placeholder="Dritte Antwortoption" class="form-input form-input-small">
                             </div>
-                            <input type="text" name="questions[0][options][3]" required
-                                placeholder="Vierte Antwortoption" class="form-input form-input-small">
+                            <div class="answer-option">
+                                <div class="answer-option-header">
+                                    <input type="radio" name="questions[0][correct]" value="3" required id="q0_opt3">
+                                    <label for="q0_opt3" class="option-label">D</label>
+                                </div>
+                                <input type="text" name="questions[0][options][3]" required
+                                    placeholder="Vierte Antwortoption" class="form-input form-input-small">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
 
         <center>
@@ -232,6 +232,12 @@ if ($_POST && isset($_POST['save_category'])) {
         <button type="button" onclick="window.location.href='alleKategorien.php'" class="btn btn-secondary">
             Abbrechen
         </button>
+        <?php if ($editing): ?>
+            <button type="submit" name="delete_category" class="btn btn-danger" 
+                onclick="return confirm('Sind Sie sicher, dass Sie diese Kategorie löschen möchten?')">
+                Kategorie löschen
+            </button>
+        <?php endif; ?>
         <button type="submit" name="save_category" class="btn btn-primary">
             Kategorie speichern
         </button>
@@ -239,7 +245,7 @@ if ($_POST && isset($_POST['save_category'])) {
 </form>
 
 <script>
-    let questionCount = 1;
+    let questionCount = <?= $editing ? count($category['questions'] ?? []) : 1 ?>;
 
     function addQuestion() {
         const container = document.getElementById('questions-container');
@@ -352,6 +358,11 @@ if ($_POST && isset($_POST['save_category'])) {
         const form = document.querySelector('.category-form');
 
         form.addEventListener('submit', function (e) {
+            // Skip validation for delete
+            if (e.submitter && e.submitter.name === 'delete_category') {
+                return true;
+            }
+
             // Check if emoji is selected
             const emojiRadios = document.querySelectorAll('input[name="category_icon"]');
             const isEmojiSelected = Array.from(emojiRadios).some(radio => radio.checked);
@@ -516,6 +527,17 @@ if ($_POST && isset($_POST['save_category'])) {
         margin-top: var(--spacing-xxl);
         padding-top: var(--spacing-xl);
         border-top: 1px solid var(--border-color);
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+        border: 1px solid #dc3545;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
     }
 
     /* Animation for question removal */
